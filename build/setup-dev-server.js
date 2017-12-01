@@ -3,6 +3,9 @@ const path = require('path')
 const MFS = require('memory-fs')
 const webpack = require('webpack')
 const chokidar = require('chokidar')
+const proxyMiddleware = require('http-proxy-middleware')
+const config = require('../config')
+const proxyTable = config.dev.proxyTable
 const clientConfig = require('./webpack.client.config')
 const serverConfig = require('./webpack.server.config')
 
@@ -28,6 +31,15 @@ module.exports = function setupDevServer (app, templatePath, cb) {
       })
     }
   }
+
+  // proxy api requests
+  // Object.keys(proxyTable).forEach(function (context) {
+  //   let options = proxyTable[context]
+  //   if (typeof options === 'string') {
+  //     options = { target: options }
+  //   }
+  //   app.use(proxyMiddleware(options.filter || context, options))
+  // })
 
   // read template from disk and watch
   template = fs.readFileSync(templatePath, 'utf-8')

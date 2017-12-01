@@ -21,7 +21,7 @@
 <script>
 
 export default {
-  name: 'user-view',
+  name: 'cookbook-view',
 
   computed: {
     user () {
