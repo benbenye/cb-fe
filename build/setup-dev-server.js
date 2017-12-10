@@ -33,13 +33,13 @@ module.exports = function setupDevServer (app, templatePath, cb) {
   }
 
   // proxy api requests
-  // Object.keys(proxyTable).forEach(function (context) {
-  //   let options = proxyTable[context]
-  //   if (typeof options === 'string') {
-  //     options = { target: options }
-  //   }
-  //   app.use(proxyMiddleware(options.filter || context, options))
-  // })
+  Object.keys(proxyTable).forEach(function (context) {
+    let options = proxyTable[context]
+    if (typeof options === 'string') {
+      options = { target: options }
+    }
+    app.use(proxyMiddleware(options.filter || context, options))
+  })
 
   // read template from disk and watch
   template = fs.readFileSync(templatePath, 'utf-8')

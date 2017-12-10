@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import actions from './actions'
+import createActions from './create-actions'
 import mutations from './mutations'
 import getters from './getters'
 
 Vue.use(Vuex)
 
-export function createStore () {
+export function createStore (httpClientConfig, httpApiClientConfig) {
   return new Vuex.Store({
     state: {
       activeType: null,
@@ -21,7 +21,8 @@ export function createStore () {
         job: []
       }
     },
-    actions,
+    // actions,
+    actions: createActions(httpClientConfig, httpApiClientConfig),
     mutations,
     getters
   })

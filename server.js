@@ -99,9 +99,19 @@ function render (req, res) {
 
   const context = {
     title: 'Vue HN 2.0', // default title
-    url: req.url
+    url: req.url,
+    httpClientConfig: {
+      headers: req.headers,
+      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://www.chunbo.com'
+    },
+    httpApiClientConfig: {
+      headers: req.headers,
+      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
+    }
   }
+  console.log('render start:', req.path)
   renderer.renderToString(context, (err, html) => {
+    console.log('render end:', req.path)
     if (err) {
       return handleError(err)
     }

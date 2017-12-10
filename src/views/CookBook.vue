@@ -29,8 +29,9 @@ export default {
     }
   },
 
-  asyncData ({ store, route: { params: { id }}}) {
-    return store.dispatch('FETCH_USER', { id })
+  asyncData ({ store}) {
+    console.log('1')
+    return store.dispatch('COOKBOOK_DATA')
   },
 
   title () {
