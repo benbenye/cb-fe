@@ -5,8 +5,13 @@ import createAPI from '../api'
 import axios from 'axios';
 
 export default function createActions(
-  httpClientConfig = {},
+  httpClientConfig = {headers: {}},
   httpApiClientConfig = {}) {
+  if(httpClientConfig.headers){
+    httpClientConfig.headers['accept'] = 'application/json, */*'
+    httpClientConfig.headers['Content-Type'] = 'application/json'
+  }
+
   const httpClient = axios.create(httpClientConfig)
   const httpApiClient = axios.create(httpApiClientConfig)
 
@@ -18,7 +23,8 @@ export default function createActions(
       // commit('SET_ACTIVE_TYPE')
       return getCookBook()
         .then(res => {
-          console.log(res)
+          commit('SET_COOKBOOK', res.data)
+          // console.log(res.data)
         })
     }
   }

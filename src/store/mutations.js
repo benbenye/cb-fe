@@ -5,8 +5,8 @@ export default {
     state.activeType = type
   },
 
-  SET_LIST: (state, { type, ids }) => {
-    state.lists[type] = ids
+  SET_COOKBOOK: (state, data ) => {
+    state.cookbook = data
   },
 
   SET_ITEMS: (state, { items }) => {

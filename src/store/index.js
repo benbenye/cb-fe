@@ -11,15 +11,8 @@ export function createStore (httpClientConfig, httpApiClientConfig) {
     state: {
       activeType: null,
       itemsPerPage: 20,
-      items: {/* [id: number]: Item */},
       users: {/* [id: string]: User */},
-      lists: {
-        top: [/* number */],
-        new: [],
-        show: [],
-        ask: [],
-        job: []
-      }
+      cookbook: {},//食谱首页
     },
     // actions,
     actions: createActions(httpClientConfig, httpApiClientConfig),

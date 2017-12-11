@@ -33,7 +33,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/getCookBook': {
-        target: 'https://api.myjson.com/bins/nxbdv',
+        target: 'https://easy-mock.com/mock/5a2d167b73225d015a528872/example/cookbook',
         changeOrigin: true,
         pathRewrite: {
           // '^/api/tuan/address/\.+$': ''
