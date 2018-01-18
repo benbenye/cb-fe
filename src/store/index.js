@@ -13,6 +13,7 @@ export function createStore (httpClientConfig, httpApiClientConfig) {
       itemsPerPage: 20,
       users: {/* [id: string]: User */},
       cookbook: {},//食谱首页
+      homeData: {}, //首页数据
     },
     // actions,
     actions: createActions(httpClientConfig, httpApiClientConfig),

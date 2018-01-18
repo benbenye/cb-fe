@@ -16,6 +16,7 @@ export default function createActions(
   const httpApiClient = axios.create(httpApiClientConfig)
 
   const {getCookBook} = createAPI(httpClient);
+  const {getHomeData} = createAPI(httpClient);
 
   return {
     // ensure data for rendering given list type
@@ -25,6 +26,16 @@ export default function createActions(
         .then(res => {
           commit('SET_COOKBOOK', res.data)
           // console.log(res.data)
+        })
+    },
+    HOMEDATA_DATA: ({commit}) => {
+      return getHomeData()
+        .then(res => {
+          console.log(22)
+          commit('SET_HOMEDATA', res.data)
+        })
+        .catch(err => {
+          console.log(err)
         })
     }
   }

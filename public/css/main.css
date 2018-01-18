@@ -1182,114 +1182,6 @@ body > header .link-right {
     text-overflow: ellipsis;
 }
 
-nav {
-    width: 100%;
-    height: .5rem;
-    background: #f8f8f8;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 1px 3px rgba(100, 100, 100, 0.3);
-}
-
-nav ul {
-    display: -webkit-flex;
-    display: flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-}
-
-nav li {
-    height: .5rem;
-    overflow: hidden;
-    -webkit-flex: 1;
-    flex: 1;
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/line-v.png) right center no-repeat;
-    background-size: .01rem;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    box-flex: 1;
-    width: 20%;
-}
-
-nav li a {
-    display: block;
-    width: 100%;
-    height: .2rem;
-    line-height: .15rem;
-    text-align: center;
-    padding-top: .3rem;
-    font-size: .12rem;
-    color: #999999;
-    position: relative;
-}
-
-nav li i {
-    display: block;
-    width: .18rem;
-    height: .18rem;
-    position: absolute;
-    top: .07rem;
-    left: 50%;
-    margin-left: -0.09rem;
-}
-
-nav li i.nav-0 {
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav0.png) 0 0;
-    -webkit-background-size: contain;
-}
-
-nav li i.nav-1 {
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav1.png) 0 0;
-    -webkit-background-size: contain;
-}
-
-nav li i.nav-2 {
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav2.png) 0 0;
-    -webkit-background-size: contain;
-}
-
-nav li i.nav-3 {
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav3.png) 0 0;
-    -webkit-background-size: contain;
-    margin-left: -12px;
-}
-
-nav li i.nav-4 {
-    background: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav4.png) 0 0;
-    -webkit-background-size: contain;
-}
-
-nav li i.num {
-    width: 16px;
-    height: 16px;
-    background: #e75f44;
-    color: #fff;
-    text-align: center;
-    line-height: 16px;
-    font-size: .11rem;
-    border-radius: 50%;
-    top: 0;
-    margin: 7px 0 0 12px;
-}
-
-nav li.on {
-    background: #E8E8E8;
-    margin-left: -1px;
-}
-
-body.navFixed {
-    padding-top: .5rem;
-}
-
-body.navFixed nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-}
 
 body.navFixed header {
     z-index: 1;
@@ -1423,7 +1315,7 @@ i.arr-up {
     background: none;
 }
 
-.layer.good-recommond h3 {
+.layer.good-recommend h3 {
     margin-bottom: .1rem;
 }
 
@@ -2539,7 +2431,6 @@ table td {
     position: relative;
     width: 100%;
     overflow: hidden;
-    visibility: hidden;
 }
 
 .slide ul {
@@ -5372,38 +5263,6 @@ li.wx-share-box p {
 .dynamic-detail-main img {
     margin-top: 2px;
     margin-bottom: 12px;
-}
-
-/*首页 好货推荐 by 5Hez  2015-10-29*/
-.good-recommond {
-    background-color: #fff;
-}
-
-.good-recommond li {
-    width: 180px;
-    margin-left: 14px;
-    margin-top: 0;
-    height: inherit;
-    padding-bottom: .35rem;
-    border: 0;
-}
-
-.good-recommond li:nth-of-type(2n-1) {
-    margin-left: 10px;
-}
-
-.good-recommond li:first-child {
-    margin-left: 0;
-}
-
-.good-recommond li img {
-    width: 100%;
-    height: inherit;
-    border-radius: 4px;
-}
-
-.good-recommond .layer-list li p, .good-recommond .layer-list li h6 {
-    text-indent: 0;
 }
 
 /*首页楼层描述 */

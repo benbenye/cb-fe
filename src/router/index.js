@@ -5,6 +5,7 @@ Vue.use(Router)
 
 // route-level code splitting
 const CookBook = () => import('../views/Cookbook.vue')
+const Main = () => import('../views/Main.vue')
 
 export function createRouter () {
   return new Router({
@@ -13,7 +14,8 @@ export function createRouter () {
     scrollBehavior: () => ({ y: 0 }),
     routes: [
       { path: '/cookbook', component: CookBook },
-      { path: '/', redirect: '/cookbook' }
+      // { path: '/', redirect: '/cookbook' }
+      { path: '/', component: Main }
     ]
   })
 }

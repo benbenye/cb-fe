@@ -42,13 +42,13 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.(css|less)$/,
         use: isProd
           ? ExtractTextPlugin.extract({
               use: 'css-loader?minimize',
               fallback: 'vue-style-loader'
             })
-          : ['vue-style-loader', 'css-loader']
+          : ['vue-style-loader', 'css-loader', 'less-loader']
       }
     ]
   },

@@ -33,11 +33,18 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api/getCookBook': {
-        target: 'https://easy-mock.com/mock/5a2d167b73225d015a528872/example/cookbook',
+        target: 'https://easy-mock.com/mock/5a2de4e5e9ee5f7c09d8e114/cb/cookbook',
         changeOrigin: true,
         pathRewrite: {
           // '^/api/tuan/address/\.+$': ''
           '^/api/getCookBook': ''
+        }
+      },
+      '/api/home': {
+        target: 'http://api.chunbo.com/home/newindex',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api/home': ''
         }
       },
       '/api': {

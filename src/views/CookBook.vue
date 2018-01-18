@@ -1,6 +1,6 @@
 <template>
   <div class="cookbook">
-    <cb-title name="美食社"></cb-title>
+    <title name="美食社"></title>
     <div class="cc">
       <div class="cc-tit">
         <div class="tit">最新美食灵感</div>
@@ -9,21 +9,31 @@
     </div>
     <div class="cc-caipu-latest">
       <ul class="product_search_list">
-        <cb-latest v-for="item in cookbook.data.latest_cookbook.list"></cb-latest>
+        <cookbook-list-item v-for="item in cookbook.data.latest_cookbook.list" :key="item.id"></cookbook-list-item>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-  import Title from '../components/Title.vue';
-  import CookbookListItem from '../components/CookbookListItem.vue';
-
+  import { ec } from '../util/index';
+  import Title from '../components/title/BaseTitle.vue';
+  import CookbookListItem from '../components/list/cookbookListItem.vue';
   export default {
     name: 'cookbook-view',
-    components: {
-      'cb-title': Title,
-      'cb-latest': CookbookListItem
+    components: ec([
+      Title, CookbookListItem
+    ]),
+
+    data() {
+      return {
+      }
+    },
+
+    methods: {
+    },
+
+    watch: {
     },
 
     computed: {

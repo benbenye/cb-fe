@@ -98,7 +98,7 @@ function render (req, res) {
   }
 
   const context = {
-    title: 'Vue HN 2.0', // default title
+    title: '春播-安心健康食品的购买平台_安全食品_专业检测_肉禽海鲜_有机蔬菜_进口食品_天然乳品', // default title
     url: req.url,
     httpClientConfig: {
       headers: req.headers,
