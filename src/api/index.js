@@ -6,7 +6,7 @@ export default function createAPI(httpClient) {
       return httpClient.get('/getCookBook')
     },
     getHomeData() {
-      return httpClient.get('/home')
+      return httpClient.get('/home/newindex')
     }
   }
 }

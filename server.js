@@ -102,7 +102,7 @@ function render (req, res) {
     url: req.url,
     httpClientConfig: {
       headers: req.headers,
-      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://www.chunbo.com'
+      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
     },
     httpApiClientConfig: {
       headers: req.headers,
