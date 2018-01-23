@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 // route-level code splitting
-const CookBook = () => import('../views/Cookbook.vue')
+const CookBook = () => import('../views/CookBook.vue')
 const Main = () => import('../views/Main.vue')
 
 export function createRouter () {
