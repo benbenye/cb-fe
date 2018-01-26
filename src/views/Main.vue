@@ -32,14 +32,13 @@
       </li>
     </ul>
 
-    <template v-for="(item, index) in home.data.roll_list">
-      <div class="layer good-recommend border-bottom-1px">
-        <h3><span>{{item.title}}</span></h3>
-        <div class="layer-sub-desc">{{item.sub_title}}</div>
-        <scroll :wrapper="'good-recommend-'+index" :data="item.product_list">
-        </scroll>
-      </div>
-    </template>
+    <scroll-card
+      v-for="(item, index) in home.data.roll_list"
+      :key="index"
+      :rollData="item"
+      :index="index"
+    >
+    </scroll-card>
 
     <floor :list_lc="home.data.list_lc"></floor>
   </div>
@@ -52,11 +51,12 @@
   import Floor from '../components/floor/Floor.vue';
   import Item from '../components/list/Item.vue';
   import Scroll from '../components/scroll/Scroll.vue';
+  import ScrollCard from '../components/card/scrollCard.vue';
 
   export default {
     components: ec([
       Nav, BannerImg, Floor,
-      Item, Scroll
+      Item, Scroll, ScrollCard
     ]),
     name: 'main',
     data() {

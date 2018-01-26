@@ -7,6 +7,9 @@ export default function createAPI(httpClient) {
     },
     getHomeData() {
       return httpClient.get('/home/newindex')
+    },
+    getProductInfo(id) {
+      return httpClient.get(`/Product/GetProductInfo/product_id/${id}`)
     }
   }
 }

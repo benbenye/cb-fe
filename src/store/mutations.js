@@ -9,6 +9,10 @@ export default {
     state.cookbook = data
   },
 
+  SET_PRODUCTINFO: (state, data ) => {
+    state.productInfo = data
+  },
+
   SET_ITEMS: (state, { items }) => {
     items.forEach(item => {
       if (item) {

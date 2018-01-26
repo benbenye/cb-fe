@@ -14,6 +14,7 @@ export function createStore (httpClientConfig, httpApiClientConfig) {
       users: {/* [id: string]: User */},
       cookbook: {},//食谱首页
       homeData: {}, //首页数据
+      productInfo: {}, //单品详情
     },
     // actions,
     actions: createActions(httpClientConfig, httpApiClientConfig),
