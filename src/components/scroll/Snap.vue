@@ -60,15 +60,16 @@
   };
 </script>
 
-<style scoped type="text/less">
+<style scoped type="text/less" lang="less">
   ul {
     display: block;
-  }
-  ul li {
-    background-color: #000;
-    float: left;
-  }
-  ul li img{
-    width: 100%;
+    overflow: hidden;
+    li {
+      background-color: #000;
+      float: left;
+      img {
+        width: 100%;
+      }
+    }
   }
 </style>

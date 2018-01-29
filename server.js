@@ -102,7 +102,7 @@ function render (req, res) {
     url: req.url,
     httpClientConfig: {
       headers: req.headers,
-      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://www.chunbo.com'
+      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/www' : 'http://www.chunbo.com'
     },
     httpApiClientConfig: {
       headers: req.headers,
@@ -112,6 +112,8 @@ function render (req, res) {
   console.log('render start:', req.path)
   renderer.renderToString(context, (err, html) => {
     console.log('render end:', req.path)
+    console.log(req.rawHeaders)
+    console.log(req.headers)
     if (err) {
       return handleError(err)
     }

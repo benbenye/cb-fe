@@ -5,5 +5,8 @@ module.exports = {
     require('autoprefixer')({
       browsers: ['last 3 versions']
     })
-  ]
+  ],
+  loaders: {
+    less: 'vue-style-loader!css-loader!less-loader'
+  }
 }
