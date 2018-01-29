@@ -22,7 +22,7 @@
         </template>
       </p>
     </a>
-    <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id"></a>
+    <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id" @click="addCart(item_li.product_id, 1)"></a>
     <div class="item-icon-box" v-if="item_li.promotion_price != 0.00">
       <i class="icon i-xsqg"></i>
     </div>
@@ -30,6 +30,12 @@
 </template>
 
 <script>
+  const axios = require('axios');
+  const instance = axios.create({
+    baseURL: '/www',
+    timeout: 1000,
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+  });
   export default {
     name: 'item',
     props: {
@@ -39,6 +45,23 @@
     },
     data() {
       return {};
+    },
+    methods: {
+      addCart: function (pid, num) {
+        instance.get('/Cart/add', {
+          params: {
+            product_id: pid,
+            site_id: 0,
+            sku_num: num || 1,
+            sku_code: 0,
+            trackid: 0,
+            source: 0
+          }
+        })
+          .then(res => {
+            console.log(res)
+          })
+      }
     }
   };
 </script>

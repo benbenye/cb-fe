@@ -1,0 +1,203 @@
+header .search {
+  box-sizing: border-box;
+  height: .3rem;
+  text-align: center;
+  font-size: .14rem;
+  background: #e8ecef;
+  padding: 0 .24rem;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/icon-search.png);
+  background-repeat: no-repeat;
+  background-position: .1rem center;
+  background-size: 12px;
+}
+
+header .search-box {
+  position: absolute;
+  top: 50%;
+  left: .12rem;
+  right: .6rem;
+  margin-top: -0.15rem;
+  display: none;
+}
+
+header .search-box .icon-del {
+  position: absolute;
+  width: .24rem;
+  height: .3rem;
+  right: 0;
+  top: 0;
+  display: none;
+  background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/icon-search-del.png);
+  background-repeat: no-repeat;
+  background-size: .12rem;
+  background-position: center;
+}
+
+header .search-box.show {
+  display: block;
+}
+
+header .search-focus {
+  text-align: left;
+}
+
+header .search-act {
+  width: .4rem;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: .1rem;
+  margin-top: -12px;
+  text-align: right;
+  font-size: .16rem;
+  overflow: hidden;
+  display: none;
+}
+
+header .search-btn {
+  position: absolute;
+  left: .4rem;
+  right: .4rem;
+  line-height: .5rem;
+  text-align: center;
+}
+
+header .search-btn .serarch-text {
+  padding: .05rem .3rem .05rem .5rem;
+  background-color: #e8ecef;
+  color: #999;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/icon-search.png);
+  background-repeat: no-repeat;
+  background-size: 20px;
+  background-position: .3rem;
+}
+
+header .search-act-icon {
+  width: .4rem;
+  height: .48rem;
+  position: absolute;
+  top: 0;
+  right: .1rem;
+  background: url(https://sstatic.chunboimg.com/m/0.1.0/img/i-search.png) no-repeat center;
+  background-size: 50%;
+  text-indent: 9999px;
+  text-align: right;
+  font-size: .16rem;
+  overflow: hidden;
+}
+
+header .search-cancel,
+header .search-cancel-v {
+  width: .4rem;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: .1rem;
+  font-size: .16rem;
+  margin-top: -12px;
+  display: none;
+  color: #22bc69
+}
+
+header .search-filter-act,
+header .set-act {
+  width: .9rem;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  right: .1rem;
+  margin-top: -12px;
+  text-align: right;
+  line-height: 24px;
+  font-size: .14rem;
+}
+.search-res {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #f5f7fa;
+  top: .5rem;
+  display: none;
+  z-index: 11;
+}
+
+.search-res.do {
+  top: 1rem;
+}
+
+.search-res h5 {
+  height: .4rem;
+  line-height: .4rem;
+  background: #f5f7fa;
+  color: #666666;
+  text-indent: .1rem;
+  position: relative;
+  font-size: 12px;
+}
+
+.search-res h5 .del-search-key {
+  position: absolute;
+  top: 50%;
+  right: .05rem;
+  margin-top: -9px;
+  width: 18px;
+  height: 18px;
+  background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/del.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.search-res .search-list {
+  padding-left: .05rem;
+  padding-right: .05rem;
+  padding-bottom: .15rem;
+  border-bottom: 1px solid #ddd;
+  margin-top: -.1rem;
+}
+
+.search-res .search-list:last-child {
+  border: 0;
+}
+
+.search-res .search-list li {
+  font-size: 14px;
+  color: #333333;
+  border: 1px solid #ddd;
+  position: relative;
+  display: inline-block;
+  padding: .05rem .12rem;
+  margin-left: .06rem;
+  margin-right: .06rem;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-top: .1rem;
+}
+
+.search-res .associational-word {
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  display: none;
+}
+
+.search-res .associational-word li {
+  line-height: .4rem;
+  background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/icon-search.png);
+  background-repeat: no-repeat;
+  background-position: .22rem center;
+  padding-left: .36rem;
+  padding-right: .12rem;
+  background-size: 12px;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

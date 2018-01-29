@@ -1,5 +1,6 @@
 <template>
   <div>
+    <index-title></index-title>
     <cb-nav></cb-nav>
 
     <banner-img
@@ -50,13 +51,15 @@
   import BannerImg from '../components/banner-img/BannerImg.vue';
   import Floor from '../components/floor/Floor.vue';
   import Item from '../components/list/Item.vue';
+  import IndexTitle from '../components/title/IndexTitle.vue';
   import Scroll from '../components/scroll/Scroll.vue';
   import ScrollCard from '../components/card/scrollCard.vue';
 
   export default {
     components: ec([
       Nav, BannerImg, Floor,
-      Item, Scroll, ScrollCard
+      Item, Scroll, ScrollCard,
+      IndexTitle
     ]),
     name: 'main',
     data() {

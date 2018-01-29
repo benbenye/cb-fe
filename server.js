@@ -112,8 +112,6 @@ function render (req, res) {
   console.log('render start:', req.path)
   renderer.renderToString(context, (err, html) => {
     console.log('render end:', req.path)
-    console.log(req.rawHeaders)
-    console.log(req.headers)
     if (err) {
       return handleError(err)
     }
