@@ -23,7 +23,11 @@ Vue.mixin({
   }
 })
 
-const { app, router, store } = createApp()
+const httpAPIClientConfig = {
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
+}
+
+const { app, router, store } = createApp(httpAPIClientConfig)
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.
