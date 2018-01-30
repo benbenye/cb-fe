@@ -1,9 +1,9 @@
 <template>
   <nav>
     <ul class="www_nav">
-      <li><a href="/?src=top-nav-index"><i class="nav-0"></i>首页</a></li>
+      <li><router-link :to="{name:'index', query: {src: 'top-nav-index'}}"><i class="nav-0"></i>首页</router-link></li>
       <li><a href="/list/main/?src=top-nav-classify"><i class="nav-1"></i>分类</a></li>
-      <li><a href="/cookbook/?src=top-nav-cookbook"><i class="nav-2"></i>美食社</a></li>
+      <li><router-link :to="{name:'cookbook', query: {src: 'top-nav-cookbook'}}"><i class="nav-0"></i>首页</router-link></li>
       <li><a href="/cart/?src=top-nav-shoppingcart"><i class="nav-3"></i>购物车<i class="num" id="AppCartNums" style="display: none;">0</i></a></li>
       <li><a href="/member/?src=top-nav-mychunbo"><i class="nav-4"></i>我的春播</a></li>
     </ul>

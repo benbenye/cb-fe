@@ -4,15 +4,13 @@ import {
 import createAPI from '../api'
 import axios from 'axios';
 
-export default function createActions(httpClientConfig = {headers: {}},
-                                      httpApiClientConfig = {}) {
-  if (httpClientConfig.headers) {
-    httpClientConfig.headers['accept'] = 'application/json, */*'
-    httpClientConfig.headers['Content-Type'] = 'application/json'
+export default function createActions(httpAPIClientConfig = {headers: {}}) {
+  if (httpAPIClientConfig.headers) {
+    httpAPIClientConfig.headers['accept'] = 'application/json, */*'
+    httpAPIClientConfig.headers['Content-Type'] = 'application/json'
   }
 
-  const httpClient = axios.create(httpClientConfig)
-  const httpApiClient = axios.create(httpApiClientConfig)
+  const httpApiClient = axios.create(httpAPIClientConfig)
 
   const {getCookBook} = createAPI(httpApiClient);
   const {getHomeData} = createAPI(httpApiClient);

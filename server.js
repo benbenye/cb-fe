@@ -88,7 +88,8 @@ function render (req, res) {
     if (err.url) {
       res.redirect(err.url)
     } else if(err.code === 404) {
-      res.status(404).send('404 | Page Not Found')
+      res.status(404).sendFile(resolve('./src/404.html'))
+      // res.status(404).send('404 | Page Not Found')
     } else {
       // Render Error Page or Redirect
       res.status(500).send('500 | Internal Server Error')
@@ -100,11 +101,7 @@ function render (req, res) {
   const context = {
     title: '春播-安心健康食品的购买平台_安全食品_专业检测_肉禽海鲜_有机蔬菜_进口食品_天然乳品', // default title
     url: req.url,
-    httpClientConfig: {
-      headers: req.headers,
-      baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/www' : 'http://www.chunbo.com'
-    },
-    httpApiClientConfig: {
+    httpAPIClientConfig: {
       headers: req.headers,
       baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
     }

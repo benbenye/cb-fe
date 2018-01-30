@@ -6,7 +6,7 @@ export default function createAPI(httpClient) {
       return httpClient.get('/getCookBook')
     },
     getHomeData() {
-      return httpClient.get('/home/newindex')
+      return httpClient.get(`/home/newindex`)
     },
     getProductInfo(id) {
       return httpClient.get(`/Product/GetProductInfo/product_id/${id}`)

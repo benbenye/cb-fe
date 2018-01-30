@@ -14,9 +14,9 @@ export function createRouter () {
     fallback: false,
     scrollBehavior: () => ({ y: 0 }),
     routes: [
-      { path: '/cookbook', component: CookBook },
-      { path: '/product/:id', component: Product },
-      { path: '/', component: Main }
+      { path: '/cookbook', component: CookBook, name: 'cookbook' },
+      { path: '/product/:id', component: Product, name: 'product' },
+      { path: '/', component: Main, name: 'index' }
     ]
   })
 }

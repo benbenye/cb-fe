@@ -10,8 +10,8 @@ const isDev = process.env.NODE_ENV !== 'production'
 export default context => {
   return new Promise((resolve, reject) => {
     const s = isDev && Date.now()
-    const { url, httpClientConfig, httpApiClientConfig } = context
-    const { app, router, store } = createApp(httpClientConfig, httpApiClientConfig)
+    const { url, httpAPIClientConfig } = context
+    const { app, router, store } = createApp(httpAPIClientConfig)
 
     const { fullPath } = router.resolve(url).route
 
