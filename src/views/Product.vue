@@ -33,6 +33,17 @@
       </p>
     </section>
     <section class="detail-section">
+      <!--规格list-->
+      <div class="detail-size border-bottom-1px" id="product_style_list">
+        规格：
+        <router-link v-if="product_info.product_style"
+                     v-for="(item, index) in product_info.product_style"
+                     :data-p-option="item.relation_id"
+                     :to="{name: 'product', params: {id: item.product_id}}"
+                     :class="[{'on': item.product_id == product_id}, 'btn-mini']"
+                     :title="item.property_option_name_all">
+          {{item.property_option_name_all}}</router-link>
+      </div>
       <template v-if="product_info.gift_list">
         <!-- start赠品 -->
         <div v-for="(item, index) in product_info.gift_list"
@@ -91,25 +102,9 @@
     <section v-if="product_info.product_quality" class="detail-section mb topborder anxin-m">
       <div class="anxin-tit">
         <span class="anxin-tit-left">安心： </span>
-        <div class="anxin-info">{$AnExplain}</div>
+        <div class="anxin-info">{{product_info.quality_text}}</div>
       </div>
-      <div id="anxin-m">
-        <ul class="anxin-list">
-          <li v-for="(item, index) in product_info.product_quality" :key="index">
-            <a v-if="item.certificationType"
-               :href="item.act_url" cbclick="10-57">
-              <img :src="item.tag_icon"/>
-              <p>{{item.name}}</p>
-            </a>
-            <a else
-               href="javascript:void(0)"
-               cbclick="10-57">
-              <img :src="item.tag_icon" :data-img-list="item.img_list"/>
-              <p>{{item.name}}</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <anxin-scroll :wrapper="'anxin-list'" :data="product_info.product_quality"></anxin-scroll>
     </section>
 
 
@@ -176,12 +171,14 @@
   import {ec} from '../util/index';
   import CbNav from '../components/nav/Nav.vue';
   import Snap from '../components/scroll/Snap.vue';
+  import AnxinScroll from '../components/scroll/AnxinScroll.vue';
   import SearchTitle from '../components/title/searchTitle.vue';
 
   export default {
     name: 'Product',
     components: ec([
-      CbNav, Snap, SearchTitle
+      CbNav, Snap, SearchTitle,
+      AnxinScroll
     ]),
     data() {
       return {
