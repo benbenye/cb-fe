@@ -34,7 +34,6 @@
       this.liStyle = li.currentStyle || getComputedStyle(li);
 
       this.$el.querySelectorAll('li').forEach(e => {
-        console.log(e)
         e.style.width = `${this.liWidth}px`;
       });
 

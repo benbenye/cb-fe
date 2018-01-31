@@ -22,7 +22,7 @@
         </template>
       </p>
     </router-link>
-    <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id" @click="addCart(item_li.product_id, 1)"></a>
+    <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id" @click="addCart(item_li.product_id, 1); clickMark({clickData:'1-7', pid:item_li.product_id})"></a>
     <div class="item-icon-box" v-if="item_li.promotion_price != 0.00">
       <i class="icon i-xsqg"></i>
     </div>
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+  import { clickMark } from '../../util/index';
   const axios = require('axios');
   const instance = axios.create({
     baseURL: '/www',
@@ -47,6 +48,7 @@
       return {};
     },
     methods: {
+      clickMark: clickMark,
       addCart: function (pid, num) {
         instance.get('/Cart/add', {
           params: {

@@ -48,7 +48,7 @@ module.exports = {
         }
       },
       '/api': {
-        target: 'http://api.chunbo.com',
+        target: 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
