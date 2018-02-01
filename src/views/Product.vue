@@ -6,47 +6,48 @@
     <!--slide-->
     <section class="detail-section detail-main">
       <snap
-      :data="product_info.product_img"></snap>
-      <h1>{{product_info.product_info.name}}</h1>
-      <p class="sub">{{product_info.product_info.subname}}</p>
+      :data="product_img"></snap>
+      <h1>{{product_info.name}}</h1>
+      <p class="sub">{{product_info.subname}}</p>
       <template
-      v-if="product_info.promotion_list.is_limit_time || product_info.promotion_list.is_pre_sale || product_info.product_detail.expiration_show">
+      v-if="promotion_list.is_limit_time || promotion_list.is_pre_sale || product_detail.expiration_show">
         <!-- 标签 -->
         <div class="tag">
-          <i v-if="product_info.promotion_list.is_pre_sale && product_info.promotion_list.is_show_pre_sale_icon"
+          <i v-if="promotion_list.is_pre_sale && promotion_list.is_show_pre_sale_icon"
              class="icon i-xsqg"></i>
-          <i v-if="product_info.promotion_list.is_limit_time" class="icon i-ys"></i>
-          <span style="color: #ee4b4b;font-size: .12rem;" v-if="product_info.product_info.exp_warning">{{product_info.product_info.exp_warning}}</span>
+          <i v-if="promotion_list.is_limit_time" class="icon i-ys"></i>
+          <span style="color: #ee4b4b;font-size: .12rem;" v-if="product_info.exp_warning">{{product_info.exp_warning}}</span>
         </div>
       </template>
       <!--价格-->
-      <template v-if="product_info.promotion_list.is_limit_time == 0">
-        <p class="price"><b>&yen;{{product_info.product_info.chunbo_price}}</b>
-          <span v-if="product_info.product_info.market_price">&yen;{{product_info.product_info.market_price}}</span></p>
+      <template v-if="promotion_list.is_limit_time == 0">
+        <p class="price"><b>&yen;{{product_info.chunbo_price}}</b>
+          <span v-if="product_info.market_price">&yen;{{product_info.market_price}}</span></p>
       </template>
 
-      <p v-if="product_info.product_coupons" class="datail-couponTip">
-        <span></span>{{product_info.product_coupons}}
+      <p v-if="product_coupons" class="datail-couponTip">
+        <span></span>{{product_coupons}}
       </p>
       <!--促销-->
-      <p v-if="product_info.promotion_list.is_limit_time == 1" class="price"><em>¥{{product_info.promotion_list.sale_price}}</em><span>¥{{product_info.product_info.chunbo_price}}</span>
+      <p v-if="promotion_list.is_limit_time == 1" class="price"><em>¥{{promotion_list.sale_price}}</em><span>¥{{product_info.chunbo_price}}</span>
       </p>
     </section>
     <section class="detail-section">
       <!--规格list-->
       <div class="detail-size border-bottom-1px" id="product_style_list">
         规格：
-        <router-link v-if="product_info.product_style"
-                     v-for="(item, index) in product_info.product_style"
+        <router-link v-if="product_style"
+                     v-for="(item, index) in product_style"
+                     :key="index"
                      :data-p-option="item.relation_id"
                      :to="{name: 'product', params: {id: item.product_id}}"
                      :class="[{'on': item.product_id == product_id}, 'btn-mini']"
                      :title="item.property_option_name_all">
           {{item.property_option_name_all}}</router-link>
       </div>
-      <template v-if="product_info.gift_list">
+      <template v-if="gift_list">
         <!-- start赠品 -->
-        <div v-for="(item, index) in product_info.gift_list"
+        <div v-for="(item, index) in gift_list"
              class="detail-gift"
              :key="index">
           <span class="num">×{{item.gift_give_num}}</span>
@@ -99,18 +100,18 @@
 
 
     <!--安心度 begin-->
-    <section v-if="product_info.product_quality" class="detail-section mb topborder anxin-m">
+    <section v-if="product_quality" class="detail-section mb topborder anxin-m">
       <div class="anxin-tit">
         <span class="anxin-tit-left">安心： </span>
-        <div class="anxin-info">{{product_info.quality_text}}</div>
+        <div class="anxin-info">{{quality_text}}</div>
       </div>
-      <anxin-scroll :wrapper="'anxin-list'" :data="product_info.product_quality"></anxin-scroll>
+      <anxin-scroll :wrapper="'anxin-list'" :data="product_quality"></anxin-scroll>
     </section>
 
 
     <section class="detail-section mb topborder recommend-buyer ">
       <h2>- 买手推荐 -</h2>
-      <p class="recommend-text"><span>{{product_info.mstj.breason}}</span></p>
+      <p class="recommend-text"><span>{{mstj.breason}}</span></p>
 
       <a href="#" class="detail-showmore-act topborder">
         <h3>产品详情
@@ -123,16 +124,16 @@
         <h2>- 我的优点 -</h2>
         <div class="detail-info-box">
           <ul class="detail-info-pop">
-            <li v-for="i in 3"><span>{{product_info.mstj['about'+i]}}</span></li>
+            <li v-for="i in 3"><span>{{mstj['about'+i]}}</span></li>
           </ul>
 
-          <img v-for="(item, index) in product_info.mstj.tpic700"
+          <img v-for="(item, index) in mstj.tpic700"
                :id="'about_shicai_pic'+index"
                :src="'http://i2.chunboimg.com/'+item"
                alt="我的优点">
 
         </div>
-        <template v-if="product_info.product_detail">
+        <template v-if="product_detail">
           <hr>
           <h2>- 我的详情 -</h2>
           <div class="detail-info-box">
@@ -140,23 +141,23 @@
               <tbody>
               <tr>
                 <th width="30%">品牌</th>
-                <td>{{product_info.product_info.brand_name}}</td>
+                <td>{{product_info.brand_name}}</td>
               </tr>
               <tr>
                 <th>规格</th>
-                <td>{{product_info.product_detail.specifications}}</td>
+                <td>{{product_detail.specifications}}</td>
               </tr>
               <tr>
                 <th>保质期</th>
-                <td>{{product_info.product_detail.expiration_date}}</td>
+                <td>{{product_detail.expiration_date}}</td>
               </tr>
               <tr>
                 <th>产地</th>
-                <td>{{product_info.product_detail.producing_area}}</td>
+                <td>{{product_detail.producing_area}}</td>
               </tr>
               <tr class="bg-gray">
                 <th>储存办法</th>
-                <td>{{product_info.product_detail.storage_method}}</td>
+                <td>{{product_detail.storage_method}}</td>
               </tr>
               </tbody>
             </table>
@@ -167,7 +168,7 @@
   </section>
 </template>
 
-<script>
+<script lang="js">
   import {ec} from '../util/index';
   import CbNav from '../components/nav/Nav.vue';
   import Snap from '../components/scroll/Snap.vue';
@@ -183,11 +184,13 @@
     data() {
       return {
         product_id: this.$route.params.id,
-        product_info: this.$store.state.productInfo.data
+        gift_list: null,
+        ...this.$store.state.productInfo.data
       };
     },
     mounted() {
       console.log(this.product_id)
+      // virtual_quality安心检测
     },
     asyncData({store, route: {params: {id}}}) {
       return store.dispatch('PRODUCTINFO_DATA', {id})
