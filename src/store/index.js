@@ -6,7 +6,7 @@ import getters from './getters'
 
 Vue.use(Vuex)
 
-export function createStore (httpClientConfig, httpApiClientConfig) {
+export function createStore (httpWWWClientConfig, httpApiClientConfig) {
   return new Vuex.Store({
     state: {
       activeType: null,
@@ -17,7 +17,7 @@ export function createStore (httpClientConfig, httpApiClientConfig) {
       productInfo: {}, //单品详情
     },
     // actions,
-    actions: createActions(httpClientConfig, httpApiClientConfig),
+    actions: createActions(httpWWWClientConfig, httpApiClientConfig),
     mutations,
     getters
   })

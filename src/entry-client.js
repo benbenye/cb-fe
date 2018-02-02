@@ -23,11 +23,8 @@ Vue.mixin({
   }
 })
 
-const httpAPIClientConfig = {
-    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
-}
-
-const { app, router, store } = createApp(httpAPIClientConfig)
+const platformIsMobile = window.__PLATFORMISMOBILE__;  
+const { app, router, store } = createApp(null, null, platformIsMobile)
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.

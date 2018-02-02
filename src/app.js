@@ -16,10 +16,11 @@ Object.keys(filters).forEach(key => {
 
 // Expose a factory function that creates a fresh set of store, router,
 // app instances on each call (which is called for each SSR request)
-export function createApp (httpAPIClientConfig) {
+export function createApp (httpWWWClientConfig, httpApiClientConfig, platformIsMobile) {
   // create store and router instances
-  const store = createStore(httpAPIClientConfig)
-  const router = createRouter()
+  const store = createStore(httpWWWClientConfig, httpApiClientConfig, platformIsMobile)
+
+  const router = createRouter(platformIsMobile)
 
   // sync the router with the vuex store.
   // this registers `store.state.route`

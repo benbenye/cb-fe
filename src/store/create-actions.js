@@ -4,12 +4,7 @@ import {
 import createAPI from '../api'
 import axios from 'axios';
 
-export default function createActions(httpAPIClientConfig = {headers: {}}) {
-  if (httpAPIClientConfig.headers) {
-    httpAPIClientConfig.headers['accept'] = 'application/json, */*'
-    httpAPIClientConfig.headers['Content-Type'] = 'application/json'
-  }
-
+export default function createActions(httpWWWClientConfig, httpAPIClientConfig = {headers: {}}, platform) {
   const httpApiClient = axios.create(httpAPIClientConfig)
 
   const {getCookBook} = createAPI(httpApiClient);

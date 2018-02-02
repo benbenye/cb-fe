@@ -57,6 +57,11 @@ module.exports = {
       '/www': {
         target: 'http://www.chunbo.com',
         changeOrigin: true,
+        headers: {
+          Referer: 'http://www.chunbo.com/',
+          Origin: 'http://www.chunbo.com/',
+          Cookie: 'cb_lang=zh-cn; PHPSESSID=kq3ujosgi44tu4clohi64gp181; cb_site_id=1; cb_address_city=110100; cb_province_id=110000; cb_csd=kq3ujosgi44tu4clohi64gp181; cb_cba_device_id=a36dcdf36ff05d80566bf4f6fab18661; Hm_lvt_e0f0cb1367ed4098be9f5fae340f3a0f=1517229150; Hm_lpvt_e0f0cb1367ed4098be9f5fae340f3a0f=1517235047'
+        },
         pathRewrite: {
           '^/www': ''
         }
