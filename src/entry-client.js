@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import './util/flexibleHelper';
 import 'es6-promise/auto'
-import { createApp } from './app'
+import {
+  createApp
+} from './app'
 import ProgressBar from './components/ProgressBar.vue'
 
 // global progress bar
@@ -10,8 +12,10 @@ document.body.appendChild(bar.$el)
 
 // a global mixin that calls `asyncData` when a route component's params change
 Vue.mixin({
-  beforeRouteUpdate (to, from, next) {
-    const { asyncData } = this.$options
+  beforeRouteUpdate(to, from, next) {
+    const {
+      asyncData
+    } = this.$options
     if (asyncData) {
       asyncData({
         store: this.$store,
@@ -23,8 +27,17 @@ Vue.mixin({
   }
 })
 
-const platformIsMobile = window.__PLATFORMISMOBILE__;  
-const { app, router, store } = createApp(null, null, platformIsMobile)
+const platformIsMobile = window.__PLATFORMISMOBILE__;
+const {
+  app,
+  router,
+  store
+} = createApp({
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/www' : 'http://www.chunbo.com'
+}, {
+
+  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'
+}, platformIsMobile)
 
 // prime the store with server-initialized state.
 // the state is determined during SSR and inlined in the page markup.
@@ -52,7 +65,10 @@ router.onReady(() => {
     }
 
     bar.start()
-    Promise.all(asyncDataHooks.map(hook => hook({ store, route: to })))
+    Promise.all(asyncDataHooks.map(hook => hook({
+        store,
+        route: to
+      })))
       .then(() => {
         bar.finish()
         next()
