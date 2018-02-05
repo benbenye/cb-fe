@@ -1,5 +1,6 @@
 <template>
-    <div class="search-res-box" :style="{display: searchBoxDisplay ? 'block' : 'none'}">
+    <div class="search-res-box" :style="{display: searchBoxDisplay ? 'block' : 'none'}"
+      @scroll="scroll($event)">
         <div class="search-res-tit">
             <div class="search-cancel" @click="withMark(hideSearchBox, '0-51')"
                 :style="{display: searchBoxDisplay ? 'block' : 'none'}">
@@ -67,13 +68,19 @@ export default {
     this.historySearch = localStorage.searchWord
       ? localStorage.searchWord.split(",")
       : [];
+
+      this.getHotSearchData();
+      this.getSmartWord();
+      this.$el.addEventListener('scroll', function(e){
+        e.stopPropagation();
+        console.log(12)
+      })
   },
   methods: {
     withMark,
 
     getHotSearchData: function() {
       axiosWWW.get("/Search/getHotSearchData/").then(res => {
-        this.searchBoxDisplay = true;
         [this.hotSpecial, this.hotWord] = [
           res.data.hotSpecial,
           res.data.hotWord
@@ -109,6 +116,9 @@ export default {
     },
     hideSearchBox: function(){
       this.$emit('update:searchBoxDisplay', false)
+    },
+    scroll: function(event){
+      console.log(event)
     }
   },
   watch: {

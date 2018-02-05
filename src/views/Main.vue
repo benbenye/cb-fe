@@ -68,6 +68,7 @@
       };
     },
     mounted() {
+      console.log(this.$el)
     },
     asyncData ({store}) {
       return store.dispatch('HOMEDATA_DATA')
