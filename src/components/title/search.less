@@ -13,13 +13,24 @@ header .search {
   background-size: 12px;
 }
 
+header .search-res-box{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden auto;
+  background-color: #fff;
+  .search-res-tit{
+    height: .3rem;
+    padding: .1rem 0;
+  }
+}
+
 header .search-box {
   position: absolute;
-  top: 50%;
   left: .12rem;
   right: .6rem;
-  margin-top: -0.15rem;
-  display: none;
 }
 
 header .search-box .icon-del {
@@ -94,12 +105,9 @@ header .search-cancel,
 header .search-cancel-v {
   width: .4rem;
   height: 24px;
-  position: absolute;
-  top: 50%;
-  right: .1rem;
+  float: right;
+  margin-right: .1rem;
   font-size: .16rem;
-  margin-top: -12px;
-  display: none;
   color: #22bc69
 }
 
@@ -116,13 +124,7 @@ header .set-act {
   font-size: .14rem;
 }
 .search-res {
-  position: fixed;
-  width: 100%;
-  height: 100%;
   background: #f5f7fa;
-  top: .5rem;
-  display: none;
-  z-index: 11;
 }
 
 .search-res.do {
@@ -179,13 +181,6 @@ header .set-act {
 
 .search-res .associational-word {
   background-color: #fff;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  display: none;
 }
 
 .search-res .associational-word li {
