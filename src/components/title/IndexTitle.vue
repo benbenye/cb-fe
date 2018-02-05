@@ -8,23 +8,32 @@
         北京
       </a>
     </div>
-    <a href="javascript:void(0)" class="search-cancel" onclick="goReferer()">取消</a>
     <a href="/?src=top-header-logo" class="logo">春播</a>
-    <div class="search-box">
-      <input type="text" class="search" placeholder="搜索春播商品" id="search_key">
-      <div class="icon-del"></div>
-    </div>
-    <a href="javascript:void(0);" class="search-act-icon" cbclick="1-15"></a>
+    <a href="javascript:void(0);" class="search-act-icon"
+      @click="clickMark({clickData:'1-15'}); showSearchBox()"></a>
+    <search-box :searchBoxDisplay.sync='searchBoxIsShow'></search-box>
   </header>
 </template>
 
 <script>
-  import {ec} from '../../util/index'
+  import {ec, clickMark} from '../../util/index'
+  import SearchBox from './SearchBox.vue'
+
   export default {
     name: 'IndexTitle',
-    components: ec([]),
+    components: ec([
+      SearchBox
+    ]),
     data() {
-      return {};
+      return {
+        searchBoxIsShow: false
+      };
+    },
+    methods: {
+      clickMark: clickMark,
+      showSearchBox: function(){
+        this.searchBoxIsShow = true
+      }
     }
   };
 </script>

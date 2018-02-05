@@ -1,7 +1,7 @@
 <template>
   <section>
     <!--search-->
-    <search-title></search-title>
+    <product-title></product-title>
     <cb-nav></cb-nav>
     <!--slide-->
     <section class="detail-section detail-main">
@@ -124,10 +124,10 @@
         <h2>- 我的优点 -</h2>
         <div class="detail-info-box">
           <ul class="detail-info-pop">
-            <li v-for="i in 3"><span>{{mstj['about'+i]}}</span></li>
+            <li v-for="i in 3" :key="i"><span>{{mstj['about'+i]}}</span></li>
           </ul>
 
-          <img v-for="(item, index) in mstj.tpic700"
+          <img v-for="(item, index) in mstj.tpic700" :key="index"
                :id="'about_shicai_pic'+index"
                :src="'http://i2.chunboimg.com/'+item"
                alt="我的优点">
@@ -173,12 +173,12 @@
   import CbNav from '../components/nav/Nav.vue';
   import Snap from '../components/scroll/Snap.vue';
   import AnxinScroll from '../components/scroll/AnxinScroll.vue';
-  import SearchTitle from '../components/title/searchTitle.vue';
+  import ProductTitle from '../components/title/ProductTitle.vue';
 
   export default {
     name: 'Product',
     components: ec([
-      CbNav, Snap, SearchTitle,
+      CbNav, Snap, ProductTitle,
       AnxinScroll
     ]),
     data() {

@@ -1,10 +1,7 @@
 <template>
-  <header class="category-header">
-    <a href="javascript:{window.history.back();}" class="back"></a>
-    <div class="search-btn" @click="getHotSearchData();"><span class="serarch-text">搜索春播商品</span></div>
     <div class="search-res-box" :style="{display: searchBoxDisplay ? 'block' : 'none'}">
         <div class="search-res-tit">
-            <div class="search-cancel" @click="searchBoxDisplay = false; clickMark({clickData: '0-51'})"
+            <div class="search-cancel" @click="withMark(hideSearchBox, '0-51')"
                 :style="{display: searchBoxDisplay ? 'block' : 'none'}">
             取消
             </div>
@@ -42,19 +39,23 @@
             </ul>
         </div>
     </div>
-  </header>
 </template>
 
 <script>
 import { axiosWWW } from "../../util/client-axios";
-import { ec, clickMark } from "../../util/index";
+import { ec, withMark } from "../../util/index";
 
 export default {
-  name: "searchTitle",
+  name: "searchBox",
   components: ec([]),
+  props: {
+      searchBoxDisplay: {
+        type: Boolean,
+        required: true
+      },
+  },
   data() {
     return {
-      searchBoxDisplay: false,
       hotSpecial: [], // 热门话题
       hotWord: [], // 热门搜索
       search_key: "", // 用户搜索的关键词
@@ -68,7 +69,8 @@ export default {
       : [];
   },
   methods: {
-    clickMark: clickMark,
+    withMark,
+
     getHotSearchData: function() {
       axiosWWW.get("/Search/getHotSearchData/").then(res => {
         this.searchBoxDisplay = true;
@@ -104,11 +106,17 @@ export default {
     emptyHistorySearch: function(){
         this.historySearch = [];
         localStorage && localStorage.setItem('searchWord', '')
+    },
+    hideSearchBox: function(){
+      this.$emit('update:searchBoxDisplay', false)
     }
   },
   watch: {
     search_key: function() {
       this.getSmartWord();
+    },
+    searchBoxDisplay: function(){
+      this.$emit('update:searchBoxDisplay', this.searchBoxDisplay)
     }
   }
 };

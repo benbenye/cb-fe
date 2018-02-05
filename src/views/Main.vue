@@ -78,5 +78,5 @@
 <style scoped lang="less">
   @import "../common/less/base.less";
   @import "../common/less/base-style.less";
-
+  
 </style>

@@ -27,6 +27,11 @@ export function clickMark({clickData, pid = 0}) {
   i.src = `${statsDomain}/Stats/addClick?d=${clickData}&ref=${encodeURIComponent(d.URL)}&track_id=${encodeURIComponent(trackId)}&product_id=${pid}`;
 }
 
+export function withMark(fn, clickData, pid = 0) {
+  fn();
+  clickMark({clickData, pid});
+}
+
 export function setTitle(text) {
   document.querySelectorAll('title')[0].innerText = text;
 }
