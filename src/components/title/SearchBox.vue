@@ -69,12 +69,6 @@ export default {
       ? localStorage.searchWord.split(",")
       : [];
 
-      this.getHotSearchData();
-      this.getSmartWord();
-      this.$el.addEventListener('scroll', function(e){
-        e.stopPropagation();
-        console.log(12)
-      })
   },
   methods: {
     withMark,
@@ -126,7 +120,12 @@ export default {
       this.getSmartWord();
     },
     searchBoxDisplay: function(){
-      this.$emit('update:searchBoxDisplay', this.searchBoxDisplay)
+      this.getHotSearchData();
+      this.getSmartWord();
+      this.$el.addEventListener('scroll', function(e){
+        e.stopPropagation();
+        console.log(12)
+      })
     }
   }
 };

@@ -1,5 +1,6 @@
 <template>
   <section>
+    <app-download :isShowAppDownload.sync="isShowAppDownload"></app-download>
     <!--search-->
     <product-title></product-title>
     <cb-nav></cb-nav>
@@ -170,19 +171,21 @@
 
 <script lang="js">
   import {ec} from '../util/index';
-  import CbNav from '../components/nav/Nav.vue';
+  import CbNav from '../components/nav/CbNav.vue';
   import Snap from '../components/scroll/Snap.vue';
   import AnxinScroll from '../components/scroll/AnxinScroll.vue';
   import ProductTitle from '../components/title/ProductTitle.vue';
+  import AppDownload from '../components/appDownload/AppDownload.vue';
 
   export default {
     name: 'Product',
     components: ec([
       CbNav, Snap, ProductTitle,
-      AnxinScroll
+      AnxinScroll, AppDownload
     ]),
     data() {
       return {
+        isShowAppDownload: true,
         product_id: this.$route.params.id,
         gift_list: null,
         ...this.$store.state.productInfo.data

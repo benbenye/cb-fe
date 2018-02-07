@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createActions from './create-actions'
+import createActions from './action'
 import mutations from './mutations'
 import getters from './getters'
 

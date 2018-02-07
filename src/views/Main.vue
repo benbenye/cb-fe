@@ -47,7 +47,7 @@
 
 <script>
   import {ec} from '../util/index';
-  import Nav from '../components/nav/Nav.vue';
+  import Nav from '../components/nav/CbNav.vue';
   import BannerImg from '../components/banner-img/BannerImg.vue';
   import Floor from '../components/floor/Floor.vue';
   import Item from '../components/list/Item.vue';

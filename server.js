@@ -108,15 +108,17 @@ function render(req, res) {
     url: req.url,
     platformIsMobile: isMobile,
     httpWWWClientConfig: {
-      headers: { ...req.headers,
-        accept: 'application/json, */*',
+      headers: {
+        ...req.headers,
+        'accept': 'application/json, */*',
         'Content-Type': 'application/json'
       },
       baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/www' : 'http://www.chunbo.com'
     },
     httpApiClientConfig: {
-      headers: { ...req.headers,
-        accept: 'application/json, */*',
+      headers: {
+        ...req.headers,
+        'accept': 'application/json, */*',
         'Content-Type': 'application/json'
       },
       baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://api.chunbo.com'

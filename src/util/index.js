@@ -35,3 +35,19 @@ export function withMark(fn, clickData, pid = 0) {
 export function setTitle(text) {
   document.querySelectorAll('title')[0].innerText = text;
 }
+
+export function UA() {
+  const ua =  window.navigator.userAgent;
+  const isIPad = !!ua.match(/(iPad).*OS\s([\d_]+)/);
+  const isIPhone = !isIPad && !!ua.match(/(iPhone\sOS)\s([\d_]+)/);
+  return {
+    ua: ua,
+    isWX: ua.indexOf('MicroMessenger') >= 0,
+    isIOS: isIPhone || isIPad,
+    isIPad: isIPad,
+    isIPhone: isIPhone,
+    isAndroid: !(isIPhone || isIPad),
+    isSafari: (isIPhone || isIPad) && !!ua.match(/Safari/),
+    isCBApp: !!location.search.match(/useragent=mobile/i)
+  }
+}

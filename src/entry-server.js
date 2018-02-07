@@ -30,8 +30,8 @@ export default context => {
         return reject({ code: 404 })
       }
       // Call fetchData hooks on components matched by the route.
-      // A preFetch hook dispatches a store action and returns a Promise,
-      // which is resolved when the action is complete and store state has been
+      // A preFetch hook dispatches a store action.js and returns a Promise,
+      // which is resolved when the action.js is complete and store state has been
       // updated.
       Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
         store,

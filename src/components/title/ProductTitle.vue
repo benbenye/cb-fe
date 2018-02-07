@@ -13,7 +13,7 @@ import { ec, clickMark } from "../../util/index";
 import SearchBox from './SearchBox.vue';
 
 export default {
-  name: "productTitle",
+  name: "ProductTitle",
   components: ec([
       SearchBox
   ]),
