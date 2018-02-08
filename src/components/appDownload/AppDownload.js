@@ -104,9 +104,6 @@ OpenApp.prototype.getSafariVersion = function () {
   return safariVersion;
 }
 
-OpenApp.prototype.getCityInfo = function () {
-  return axiosWWW.get('/index/ajaxGetCityInfo')
-}
 OpenApp.prototype.openWithMobLink = function () {
   console.log(this.params.path)
   console.log(this.getSchemaUrlWithParams())

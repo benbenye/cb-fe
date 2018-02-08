@@ -12,6 +12,7 @@ export function createStore (httpWWWClientConfig, httpApiClientConfig) {
       activeType: null,
       itemsPerPage: 20,
       users: {/* [id: string]: User */},
+      isShowAppDownload: false,
       cookbook: {},//食谱首页
       homeData: {}, //首页数据
       productInfo: {}, //单品详情

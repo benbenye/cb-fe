@@ -2,7 +2,7 @@
   <section>
     <div id="new-download-app" class="download-app" v-if="isShowAppDownload">
       <div id="new-download-openapp" class="open-app" @click="openApp.clickOpen()"></div>
-      <span id="new-download-app-close" class="close" @click="closeAppDownload()"></span>
+      <span id="new-download-app-close" class="close-app" @click="closeAppDownload()"></span>
     </div>
     <script v-if="useMobLink" src="http://f.moblink.mob.com/v2_0_1/moblink.js?appkey=1e2266274a360&v=5.0.1"
             ref="moblink"></script>
@@ -29,10 +29,14 @@
         useMobLink: false,
         regPathProduct: /product/i,
         regPathAct: /act/i,
-        regPathMember: /member/i
+        regPathMember: /member/i,
       };
     },
+    created() {
+      this.$store.commit('SET_ISSHOWAPPDOWNLOAD', this.isShowAppDownload)
+    },
     mounted() {
+
       Promise.all([
         import('../../util/index'),
         import('./AppDownload'),
@@ -109,7 +113,11 @@
     methods: {
       closeAppDownload: function () {
         this.$emit('update:isShowAppDownload', false)
-        console.log('ok')
+      }
+    },
+    watch: {
+      isShowAppDownload: function () {
+        this.$store.commit('SET_ISSHOWAPPDOWNLOAD', this.isShowAppDownload)
       }
     }
   };

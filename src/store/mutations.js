@@ -13,6 +13,10 @@ export default {
     state.productInfo = data
   },
 
+  SET_ISSHOWAPPDOWNLOAD: (state, data) => {
+    state.isShowAppDownload = data
+  },
+
   SET_ITEMS: (state, { items }) => {
     items.forEach(item => {
       if (item) {
