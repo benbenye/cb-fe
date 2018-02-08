@@ -11,7 +11,7 @@
       <h1>{{product_info.name}}</h1>
       <p class="sub">{{product_info.subname}}</p>
       <template
-      v-if="promotion_list.is_limit_time || promotion_list.is_pre_sale || product_detail.expiration_show">
+      v-if="promotion_list.is_limit_time || promotion_list.is_pre_sale || (product_detail && product_detail.expiration_show)">
         <!-- 标签 -->
         <div class="tag">
           <i v-if="promotion_list.is_pre_sale && promotion_list.is_show_pre_sale_icon"
@@ -37,14 +37,19 @@
       <!--规格list-->
       <div class="detail-size border-bottom-1px" id="product_style_list">
         规格：
-        <router-link v-if="product_style"
-                     v-for="(item, index) in product_style"
-                     :key="index"
-                     :data-p-option="item.relation_id"
-                     :to="{name: 'product', params: {id: item.product_id}}"
-                     :class="[{'on': item.product_id == product_id}, 'btn-mini']"
-                     :title="item.property_option_name_all">
-          {{item.property_option_name_all}}</router-link>
+        <!--<router-link v-if="product_style"-->
+                     <!--v-for="(item, index) in product_style"-->
+                     <!--:key="index"-->
+                     <!--:data-p-option="item.relation_id"-->
+                     <!--:to="{name: 'product', params: {id: item.product_id}}"-->
+                     <!--:class="[{'on': item.product_id == product_id}, 'btn-mini']"-->
+                     <!--:title="item.property_option_name_all">-->
+          <!--{{item.property_option_name_all}}</router-link>-->
+        <a v-if="product_style" v-for="(item, index) in product_style"
+           :href="'/product/'+item.product_id"
+           :class="[{'on': item.product_id == product_id}, 'btn-mini']">
+          {{item.property_option_name_all}}
+        </a>
       </div>
       <template v-if="gift_list">
         <!-- start赠品 -->
@@ -188,6 +193,7 @@
         isShowAppDownload: true,
         product_id: this.$route.params.id,
         gift_list: null,
+        product_detail: null,
         ...this.$store.state.productInfo.data
       };
     },

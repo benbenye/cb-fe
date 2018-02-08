@@ -48,7 +48,8 @@ module.exports = {
         }
       },
       '/api': {
-        target: 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe',
+        // target: 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe',
+        target: 'https://api.chunbo.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''
