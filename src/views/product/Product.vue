@@ -106,7 +106,9 @@
     </section>
 
 
-    <an-xin :product_quality="product_quality" :virtual_quality="virtual_quality"></an-xin>
+    <an-xin :product_quality="product_quality"
+            :quality_text="quality_text"
+            :virtual_quality="virtual_quality"></an-xin>
 
     <section class="detail-section mb topborder recommend-buyer ">
       <h2>- 买手推荐 -</h2>
@@ -212,10 +214,6 @@
   };
 </script>
 
-<style scoped lang="less" type="text/less">
+<style lang="less" type="text/less">
   @import "../../common/less/base-style";
-
-  .detail-section {
-    .border-bottom-1px
-  }
 </style>
