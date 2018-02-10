@@ -7,7 +7,7 @@ Vue.use(Router)
 const CookBook = () => import('../views/CookBook.vue')
 const CookBookM = () => import('../views/CookBook.m.vue')
 const Main = () => import('../views/Main.vue')
-const Product = () => import('../views/Product.vue')
+const Product = () => import('../views/product/Product.vue')
 
 export function createRouter (platFormIsMobile) {
   if (platFormIsMobile) {

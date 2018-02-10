@@ -1,14 +1,16 @@
 <template>
-  <div class="slide" id="detail_slider" style="visibility: visible;">
-    <ul class="slide-img">
-      <li v-for="(item, index) in data" :key="index">
-        <img :src="item.url" alt="">
-      </li>
-    </ul>
-    <ul class="slide-nav">
-      <li v-for="(item, index) in data" :key="index" :class="[index==cur ? 'cur' : '']"></li>
-    </ul>
-  </div>
+  <transition name="fade" mode="out-in">
+    <div class="slide" id="detail_slider" style="visibility: visible;">
+      <ul class="slide-img">
+        <li v-for="(item, index) in data" :key="index">
+          <img :src="item.url" alt="">
+        </li>
+      </ul>
+      <ul class="slide-nav">
+        <li v-for="(item, index) in data" :key="index" :class="[index==cur ? 'cur' : '']"></li>
+      </ul>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -41,6 +43,7 @@
       });
 
       this.$el.querySelector('ul').style.width = `${(this.liWidth + parseInt(this.liStyle.marginLeft) + parseInt(this.liStyle.marginRight)) * this.data.length}px`;
+      this.$el.style.height = `${this.liWidth}px`;
 
       import('../../common/util/iscroll').then(IScroll => {
         this.Iscroll = new IScroll('#detail_slider', {
@@ -70,38 +73,43 @@
 <style scoped type="text/less" lang="less">
   @import "../../common/less/base";
 
-  .slide-img {
-    display: block;
+  .slide {
+    position: relative;
+    height: 0;
     overflow: hidden;
-    li {
-      background-color: #000;
-      float: left;
-      img {
-        width: 100%;
+    .slide-img {
+      display: block;
+      overflow: hidden;
+      li {
+        background-color: #000;
+        float: left;
+        img {
+          width: 100%;
+        }
       }
     }
-  }
 
-  .slide-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 5px;
-    text-align: center;
-    font-size: 0;
-    z-index: 1;
-    li {
-      display: inline-block;
-      vertical-align: top;
-      margin: 0 2px;
-      width: 6px;
-      height: 6px;
-      opacity: .9;
-      border-radius: 50%;
-      background: @ColorComLine;
-      &.cur {
-        background: @ColorImMain;
-        opacity: 1;
+    .slide-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 5px;
+      text-align: center;
+      font-size: 0;
+      z-index: 1;
+      li {
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 2px;
+        width: 6px;
+        height: 6px;
+        opacity: .9;
+        border-radius: 50%;
+        background: @ColorComLine;
+        &.cur {
+          background: @ColorImMain;
+          opacity: 1;
+        }
       }
     }
   }

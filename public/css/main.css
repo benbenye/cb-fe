@@ -15,11 +15,6 @@ body {
     min-height: 5rem;
 }
 
-img {
-    vertical-align: top;
-    max-width: 100%;
-}
-
 a {
     text-decoration: none;
     color: #333333;
@@ -52,17 +47,6 @@ textarea {
     border-radius: 3px;
     font-size: .12rem;
     line-height: 1.5;
-}
-
-ul,
-li {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-p {
-    margin: 0;
 }
 
 /* button */
@@ -1490,10 +1474,6 @@ a.remove-cart {
     height: auto;
 }
 
-#detail_slider {
-    height: 100%;
-}
-
 .detail-section,
 .detail-size,
 .detail-express {
@@ -2042,69 +2022,6 @@ table td {
     background-size: contain;
     width: 100%;
     height: 5.68rem;
-}
-
-.slide {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.slide ul {
-    overflow: hidden;
-    position: relative;
-}
-
-.slide-nav {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 5px;
-    text-align: center;
-    font-size: 0;
-    z-index: 1;
-}
-
-.slide-nav i {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 2px;
-    width: 6px;
-    height: 6px;
-    opacity: .9;
-    border-radius: 50%;
-    background: #dddddd;
-}
-
-.slide-nav .cur {
-    background: #2bbc69;
-    opacity: 1;
-}
-
-.slide-img {
-    position: relative;
-    width: 3000px;
-}
-
-.slide-img img {
-    width: 100%;
-}
-
-.slide-img li {
-    position: relative;
-    float: left;
-    width: 100%;
-}
-
-.slide-box {
-    position: relative;
-    width: 3000px;
-}
-
-.slide-box li {
-    position: relative;
-    float: left;
-    width: 100%;
 }
 
 .new_hot {
@@ -4235,56 +4152,6 @@ li.wx-share-box p {
     color: #666;
     line-height: 1.5;
     font-size: .11rem;
-}
-
-/*安心度*/
-.anxin-m {
-    overflow: hidden;
-}
-
-.anxin-list {
-    width: 10000px;
-    font-size: 12px;
-    text-align: center;
-    margin-top: .1rem;
-    margin-bottom: .1rem;
-}
-
-.anxin-m .anxin-tit {
-    position: relative;
-    padding-left: .15rem;
-    padding-right: .15rem;
-    padding-top: .15rem;
-    font-size: .12rem;
-}
-
-.anxin-m .anxin-tit .anxin-tit-left {
-    position: absolute;
-}
-
-.anxin-m .anxin-tit .anxin-info {
-    padding-left: .34rem;
-}
-
-.anxin-m .anxin-tit .c-imp {
-    color: #22bc69;
-}
-
-.anxin-list li {
-    display: inline-block;
-    width: 100px;
-    vertical-align: middle;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.anxin-list li img {
-    width: 50px;
-    height: 50px;
-}
-
-.anxin-list li a {
-    color: #2bbc69;
 }
 
 /*配送区域*/

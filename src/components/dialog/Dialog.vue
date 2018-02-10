@@ -1,0 +1,78 @@
+<template>
+  <section v-show="visible">
+    <div class="img-view" v-if="isReport && reportList">
+      <h3>检测报告</h3>
+      <ul>
+        <li v-for="(item, index) in reportList" :key="index">
+          <img :src="item" alt="检测报告">
+        </li>
+      </ul>
+      <div class="close" @click="closeImgView">×</div>
+    </div>
+    <!--<div class="mask" v-else>-->
+    <!--<div class="content"></div>-->
+    <!--</div>-->
+  </section>
+</template>
+
+<script>
+  import {ec} from '../../util/index'
+  export default {
+    name: 'CbDialog',
+    components: ec([]),
+    props: ['visible', 'isReport', 'reportList'],
+    data() {
+      return {
+        data: {}
+      };
+    },
+    methods: {
+      closeImgView() {
+        this.$emit('update:visible', false)
+      }
+    }
+  };
+</script>
+
+<style scoped lang="less" type="text/less">
+  .mask-class {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1111;
+  }
+
+  .img-view {
+    .mask-class;
+    background-color: rgba(255, 255, 255, .95);
+    h3 {
+      padding: .15rem;
+      text-align: center;
+    }
+    ul {
+      display: block;
+      height: 4.6rem;
+      overflow: scroll;
+    }
+    .close {
+      position: absolute;
+      bottom: .1rem;
+      left: 50%;
+      width: .36rem;
+      height: .36rem;
+      font-size: .32rem;
+      line-height: .36rem;
+      text-align: center;
+      margin: 0 0 0 -0.18rem
+    }
+  }
+
+  .mask {
+    .mask-class;
+    background-color: rgba(0, 0, 0, .5);
+  }
+</style>

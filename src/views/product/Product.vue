@@ -17,7 +17,8 @@
           <i v-if="promotion_list.is_pre_sale && promotion_list.is_show_pre_sale_icon"
              class="icon i-xsqg"></i>
           <i v-if="promotion_list.is_limit_time" class="icon i-ys"></i>
-          <span style="color: #ee4b4b;font-size: .12rem;" v-if="product_info.exp_warning">{{product_info.exp_warning}}</span>
+          <span style="color: #ee4b4b;font-size: .12rem;"
+                v-if="product_info.exp_warning">{{product_info.exp_warning}}</span>
         </div>
       </template>
       <!--价格-->
@@ -38,13 +39,13 @@
       <div class="detail-size border-bottom-1px" id="product_style_list">
         规格：
         <!--<router-link v-if="product_style"-->
-                     <!--v-for="(item, index) in product_style"-->
-                     <!--:key="index"-->
-                     <!--:data-p-option="item.relation_id"-->
-                     <!--:to="{name: 'product', params: {id: item.product_id}}"-->
-                     <!--:class="[{'on': item.product_id == product_id}, 'btn-mini']"-->
-                     <!--:title="item.property_option_name_all">-->
-          <!--{{item.property_option_name_all}}</router-link>-->
+        <!--v-for="(item, index) in product_style"-->
+        <!--:key="index"-->
+        <!--:data-p-option="item.relation_id"-->
+        <!--:to="{name: 'product', params: {id: item.product_id}}"-->
+        <!--:class="[{'on': item.product_id == product_id}, 'btn-mini']"-->
+        <!--:title="item.property_option_name_all">-->
+        <!--{{item.property_option_name_all}}</router-link>-->
         <a v-if="product_style" v-for="(item, index) in product_style"
            :href="'/product/'+item.product_id"
            :class="[{'on': item.product_id == product_id}, 'btn-mini']">
@@ -105,15 +106,7 @@
     </section>
 
 
-    <!--安心度 begin-->
-    <section v-if="product_quality" class="detail-section mb topborder anxin-m">
-      <div class="anxin-tit">
-        <span class="anxin-tit-left">安心： </span>
-        <div class="anxin-info">{{quality_text}}</div>
-      </div>
-      <anxin-scroll :wrapper="'anxin-list'" :data="product_quality"></anxin-scroll>
-    </section>
-
+    <an-xin :product_quality="product_quality" :virtual_quality="virtual_quality"></an-xin>
 
     <section class="detail-section mb topborder recommend-buyer ">
       <h2>- 买手推荐 -</h2>
@@ -147,13 +140,13 @@
               <tbody>
               <tr>
                 <th width="30%">品牌</th>
-                <td>{{product_info.brand_name}}</td>
+                <td>{{product_info.brand_name || '--'}}</td>
               </tr>
               <tr>
                 <th>规格</th>
                 <td>{{product_detail.specifications}}</td>
               </tr>
-              <tr>
+              <tr v-if="product_detail && product_detail.expiration_show == 1">
                 <th>保质期</th>
                 <td>{{product_detail.expiration_date}}</td>
               </tr>
@@ -169,24 +162,33 @@
             </table>
           </div>
         </template>
+        <template v-if="wxts1">
+          <hr>
+          <h2>- 你还要知道 -</h2>
+          <div class="detail-info-box">
+            <ol id="little_tip">
+              <li v-for="(item, index) in wxts1" :key="index">{{item}}</li>
+            </ol>
+          </div>
+        </template>
       </div>
     </section>
   </section>
 </template>
 
 <script lang="js">
-  import {ec} from '../util/index';
-  import CbNav from '../components/nav/CbNav.vue';
-  import Snap from '../components/scroll/Snap.vue';
-  import AnxinScroll from '../components/scroll/AnxinScroll.vue';
-  import ProductTitle from '../components/title/ProductTitle.vue';
-  import AppDownload from '../components/appDownload/AppDownload.vue';
+  import {ec} from '../../util/index';
+  import CbNav from '../../components/nav/CbNav.vue';
+  import Snap from '../../components/scroll/Snap.vue';
+  import AnXin from './blocks/AnXin.vue';
+  import ProductTitle from '../../components/title/ProductTitle.vue';
+  import AppDownload from '../../components/appDownload/AppDownload.vue';
 
   export default {
     name: 'Product',
     components: ec([
       CbNav, Snap, ProductTitle,
-      AnxinScroll, AppDownload
+      AnXin, AppDownload
     ]),
     data() {
       return {
@@ -194,6 +196,9 @@
         product_id: this.$route.params.id,
         gift_list: null,
         product_detail: null,
+        wxts1: null,
+        virtual_quality: [],
+        virtual_list: [],
         ...this.$store.state.productInfo.data
       };
     },
@@ -208,7 +213,7 @@
 </script>
 
 <style scoped lang="less" type="text/less">
-  @import "../common/less/base-style";
+  @import "../../common/less/base-style";
 
   .detail-section {
     .border-bottom-1px
