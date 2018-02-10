@@ -11,7 +11,7 @@
           <i class="nav-1"></i>分类</a></li>
         <li>
           <router-link :to="{name:'cookbook', query: {src: 'top-nav-cookbook'}}">
-            <i class="nav-0"></i>美食社
+            <i class="nav-2"></i>美食社
           </router-link>
         </li>
         <li><a href="/cart/?src=top-nav-shoppingcart">
@@ -117,7 +117,7 @@
           margin-left: -12px;
         }
         &.nav-4 {
-          background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav0.png);
+          background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/nav4.png);
         }
         &.num {
           width: 16px;
