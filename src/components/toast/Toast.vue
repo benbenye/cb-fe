@@ -1,5 +1,7 @@
 <template>
-  <div v-show="visible" :class="['toast', type]"><i></i>{{mes}}</div>
+  <div v-show="visible" :class="['toast', type]">
+    <i></i>{{mes}}
+  </div>
 </template>
 
 <script>

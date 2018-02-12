@@ -1,0 +1,55 @@
+<template>
+  <section class="common-section detail-section comment-list topborder mb">
+    <h2>- 商品评论 -</h2>
+    <p class="sub">好评度<b>{{review.total_percent}}%</b> {{review.total}}人评论</p>
+    <ul>
+      <li class="comment" v-for="(item, index) in review.list" :key="index">
+        <div class="comment-header clearfix">
+          <img :src="item.avatar_url" :alt="item.buyer_name">
+          <p>
+            <span class="comment-user">{{item.nickname}}</span>
+            <span class="join-time">已在春播购买{{item.join_month}}</span>
+          </p>
+          <small class="comment-date">{{item.creation_time}}</small>
+        </div>
+        <div class="comment-mianBox">
+          <div class="comment-content">
+            <i :class="['i-comment', 'i-comment-'+item.score]"></i>
+            满意
+            <p>{{item.comment}}</p>
+          </div>
+          <div class="img-con clearfix" v-if="item.url.length">
+            <img v-for="(itemUrl, itemIndex) in item.url" :key="itemIndex"
+                 :src="'http://i3.chunboimg.com/'+itemUrl|replaceUrl" alt="用户晒图">
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="button-row">
+      <a :href="'/product/good_comment.html?id='+product_id+'&amp;count='+review.total+'&amp;src=cb-product-qbpl'" class="btn-green-border"
+         target="_self">查看全部</a>
+    </div>
+  </section>
+</template>
+
+<script>
+  import {ec} from '../../../util/index'
+  export default {
+    name: 'Review',
+    props: ['review', 'product_id'],
+    components: ec([]),
+    data() {
+      return {};
+    },
+    filters: {
+      replaceUrl: function (str) {
+        return str.replace(/\.jpg/, function () {
+          return '_200_200.jpg'
+        })
+      }
+    }
+  };
+</script>
+
+<style scoped lang="less" type="text/less">
+</style>

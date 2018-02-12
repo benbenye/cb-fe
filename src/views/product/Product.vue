@@ -11,7 +11,7 @@
       <h1>{{product_info.name}}</h1>
       <p class="sub">{{product_info.subname}}</p>
       <template
-      v-if="promotion_list.is_limit_time || promotion_list.is_pre_sale || (product_detail && product_detail.expiration_show)">
+      v-if="promotion_list.length && (promotion_list.is_limit_time || promotion_list.is_pre_sale || (product_detail && product_detail.expiration_show))">
         <!-- 标签 -->
         <div class="tag">
           <i v-if="promotion_list.is_pre_sale && promotion_list.is_show_pre_sale_icon"
@@ -162,6 +162,9 @@
         </template>
       </div>
     </section>
+    
+    <review :review="review" :product_id="product_id"></review>
+
     <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
   </section>
 </template>
@@ -171,6 +174,7 @@
   import {addCart} from '../../common/js/product';
   import AnXin from './blocks/AnXin.vue';
   import AddCart from './blocks/AddCart.vue';
+  import Review from './blocks/Review.vue';
   import CbNav from '../../components/nav/CbNav.vue';
   import Snap from '../../components/scroll/Snap.vue';
   import Toast from '../../components/toast/Toast.vue';
@@ -182,7 +186,7 @@
     components: ec([
       CbNav, Snap, ProductTitle,
       AnXin, AppDownload, Toast,
-      AddCart
+      AddCart, Review
     ]),
     data() {
       return {
@@ -196,9 +200,11 @@
         product_id: this.$route.params.id,
         gift_list: null,
         product_detail: null,
+        stock_count: 0,
         wxts1: [],
         virtual_quality: [],
         virtual_list: [],
+        promotion_list: [],
         ...this.$store.state.productInfo.data
       };
     },
