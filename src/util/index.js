@@ -28,7 +28,6 @@ export function clickMark({clickData, pid = 0}) {
 }
 
 export function withMark(fn, clickData, pid = 0) {
-  fn();
   clickMark({clickData, pid});
 }
 
