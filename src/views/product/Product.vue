@@ -93,15 +93,15 @@
         数量：
         <div class="copies">
           <a class="icon-minus" id="down_p_count" cbclick="10-48">-</a>
-          <input id="product_count" type="text" value="1"/>
+          <input id="product_count" type="number" v-model="product_num"/>
           <a class="icon-plus" id="up_p_count" cbclick="10-47">+</a>
         </div>
-        <a class="btn-red"
-           id="add_cart"
-           cbclick="10-7"
-           :data-pid="product_id">
+        <a class="btn-red" id="add_cart"
+           cbclick="10-7" @click="addCart(product_id)"
+           v-if="stock_count" :data-pid="product_id">
           加入购物车</a>
-        <a id="no_stock_div" class="btn-red btn-disable" style="display:none;">抢空了，马上回来</a>
+        <a id="no_stock_div" class="btn-red btn-disable"
+           v-else>抢空了，马上回来</a>
       </div>
     </section>
 
@@ -164,7 +164,7 @@
             </table>
           </div>
         </template>
-        <template v-if="wxts1">
+        <template v-if="wxts1.length">
           <hr>
           <h2>- 你还要知道 -</h2>
           <div class="detail-info-box">
@@ -175,14 +175,17 @@
         </template>
       </div>
     </section>
+    <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
   </section>
 </template>
 
 <script lang="js">
   import {ec} from '../../util/index';
+  import {addCart} from '../../common/js/product';
+  import AnXin from './blocks/AnXin.vue';
   import CbNav from '../../components/nav/CbNav.vue';
   import Snap from '../../components/scroll/Snap.vue';
-  import AnXin from './blocks/AnXin.vue';
+  import Toast from '../../components/toast/Toast.vue';
   import ProductTitle from '../../components/title/ProductTitle.vue';
   import AppDownload from '../../components/appDownload/AppDownload.vue';
 
@@ -190,28 +193,54 @@
     name: 'Product',
     components: ec([
       CbNav, Snap, ProductTitle,
-      AnXin, AppDownload
+      AnXin, AppDownload, Toast
     ]),
     data() {
       return {
+        toast: {
+          visible: false,
+          type: 'warn',
+          mes: ''
+        },
+        product_num: 1,
         isShowAppDownload: true,
         product_id: this.$route.params.id,
         gift_list: null,
         product_detail: null,
-        wxts1: null,
+        wxts1: [],
         virtual_quality: [],
         virtual_list: [],
         ...this.$store.state.productInfo.data
       };
     },
     mounted() {
-      console.log(this.product_id)
-      // virtual_quality安心检测
     },
-    asyncData({store, route: {params: {id}}}) {
+    methods: {
+      addCart: function (pid) {
+        addCart({
+          pid: pid,
+          sku_code: 1111,
+        })
+          .then(data => {
+            if (data.status === 1) {
+//              更新购物车数量
+              this.toast.visible = true
+              this.toast.type = 'succ'
+              this.toast.mes = '添加购物车成功'
+              return
+            }
+            this.toast.visible = true
+            this.toast.type = 'warn'
+            this.toast.mes = data.info
+          })
+      }
+    },
+    asyncData({store, route: {params: {id}}})
+    {
       return store.dispatch('PRODUCTINFO_DATA', {id})
     }
-  };
+  }
+  ;
 </script>
 
 <style lang="less" type="text/less">

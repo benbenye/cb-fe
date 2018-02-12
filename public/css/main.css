@@ -785,10 +785,6 @@ header .header-back:before {
     overflow: hidden;
 }
 
-body.navFixed header {
-    z-index: 1;
-}
-
 i.more {
     position: absolute;
     right: 0.12rem;

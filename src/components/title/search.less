@@ -20,6 +20,7 @@ header .search-res-box{
   bottom: 0;
   right: 0;
   background-color: #fff;
+  z-index: 1111;
   .search-res-tit{
     height: .3rem;
     padding: .1rem 0;
@@ -124,10 +125,13 @@ header .set-act {
 }
 .search-res {
   background: #f5f7fa;
+  position: absolute;
 }
 
 .search-res.do {
-  top: 1rem;
+  top: .5rem;
+  bottom: 0;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }

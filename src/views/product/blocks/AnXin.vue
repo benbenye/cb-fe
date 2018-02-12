@@ -102,7 +102,7 @@
       display: inline-block;
       border: 1px solid #ccc;
       padding: .05rem;
-      color: #ccc;
+      color: #999;
       border-radius: 3px;
       margin-bottom: .1rem;
     }

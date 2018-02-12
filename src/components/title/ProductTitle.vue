@@ -36,7 +36,6 @@ export default {
     clickMark: clickMark,
     showSearchBox: function() {
         this.searchIsShow = true
-        console.log(this.searchIsShow)
     },
     getSmartWord: function() {
       axiosWWW
@@ -46,7 +45,6 @@ export default {
           }
         })
         .then(res => {
-          console.log(res.data);
           this.search_res = res.data || [];
         });
     },
