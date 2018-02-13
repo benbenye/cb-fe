@@ -162,7 +162,7 @@
         </template>
       </div>
     </section>
-    
+
     <review :review="review" :product_id="product_id"></review>
 
     <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
