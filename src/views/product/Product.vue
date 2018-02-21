@@ -101,7 +101,7 @@
       <h2>- 买手推荐 -</h2>
       <p class="recommend-text"><span>{{mstj.breason}}</span></p>
 
-      <a href="#" class="detail-showmore-act topborder">
+      <a href="#" class="detail-showmore-act topborder" v-if="0">
         <h3>产品详情
           <small>(建议在WiFi环境下打开)</small>
         </h3>
