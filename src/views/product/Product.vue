@@ -34,7 +34,7 @@
       <p v-if="promotion_list.is_limit_time == 1" class="price"><em>¥{{promotion_list.sale_price}}</em><span>¥{{product_info.chunbo_price}}</span>
       </p>
     </section>
-    <section class="detail-section">
+    <section class="detail-section mb">
       <!--规格list-->
       <div class="detail-size border-bottom-1px" id="product_style_list">
         规格：
@@ -93,7 +93,7 @@
     </section>
 
 
-    <an-xin :product_quality="product_quality"
+    <an-xin class="border-top-1px" :product_quality="product_quality"
             :quality_text="quality_text"
             :virtual_quality="virtual_quality"></an-xin>
 

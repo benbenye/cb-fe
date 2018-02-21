@@ -8,7 +8,7 @@
             <span class="anxin-tit-left">安心： </span>
             <div class="anxin-info">{{quality_text}}</div>
           </div>
-          <an-xin-scroll class="anxin-list" :wrapper="'anxin-list'" :data="product_quality"></an-xin-scroll>
+          <an-xin-scroll :wrapper="'anxin-list'" :data="product_quality"></an-xin-scroll>
         </section>
       </template>
       <!--安心度组合-->
@@ -19,13 +19,13 @@
                  v-show="virtualVisible">
           <div class="anxin-tit" v-html="item.product_name+':'+item.quality_text">
           </div>
-          <an-xin-scroll class="anxin-list" :wrapper="'anxin-list-'+index" :data="item.product_quality"></an-xin-scroll>
+          <an-xin-scroll :wrapper="'anxin-list-'+index" :data="item.product_quality"></an-xin-scroll>
         </section>
         <section class="detail-section anxin-m border-top-1px"
                  v-else>
           <div class="anxin-tit" v-html="item.product_name+':'+item.quality_text">
           </div>
-          <an-xin-scroll class="anxin-list" :wrapper="'anxin-list-'+index" :data="item.product_quality"></an-xin-scroll>
+          <an-xin-scroll :wrapper="'anxin-list-'+index" :data="item.product_quality"></an-xin-scroll>
         </section>
       </template>
       <template v-if="virtual_quality.length > 2">

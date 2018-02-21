@@ -128,9 +128,9 @@
   .download-app {
     position: relative;
     height: .5rem;
-    background-color: rgb(51, 51, 51);
+    background-color: #3a3a3a;
     background-image: url(https://s0.chunboimg.com/group1/M00/20/D0/Cv4JrlovdzqAUrWsAAA5HDjhAMs429.jpg);
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     .open-app {

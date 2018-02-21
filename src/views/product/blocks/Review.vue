@@ -15,7 +15,9 @@
         <div class="comment-mianBox">
           <div class="comment-content">
             <i :class="['i-comment', 'i-comment-'+item.score]"></i>
-            满意
+            <template v-if="item.score === 1">不满意</template>
+            <template v-if="item.score === 2">一般</template>
+            <template v-if="item.score === 3">满意</template>
             <p>{{item.comment}}</p>
           </div>
           <div class="img-con clearfix" v-if="item.url.length">
