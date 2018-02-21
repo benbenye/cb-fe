@@ -5618,33 +5618,6 @@ body.pgwModalOpen {
     border-left: 1px solid #ddd;
 }
 
-.product-cookbook {
-    overflow: hidden;
-    margin-bottom: .2rem;
-}
-
-.product-cookbook .product-cookbook-ul {
-    width: 3000px;
-}
-
-.product-cookbook li {
-    width: 200px;
-    font-size: 14px;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: .12rem;
-}
-
-.product-cookbook li:first-child {
-    margin-left: .12rem;
-}
-
-.product-cookbook li img {
-    width: 200px;
-    height: 132px;
-    margin-bottom: 8px;
-}
-
 /*我的春播*/
 .my_wrap {
     background-color: #2BBC69;

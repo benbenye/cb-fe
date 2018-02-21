@@ -27,7 +27,8 @@
       };
     },
     methods: {
-      closeImgView() {
+      closeImgView: function() {
+        console.log('s')
         this.$emit('update:visible', false)
       }
     }
@@ -67,7 +68,7 @@
       font-size: .32rem;
       line-height: .36rem;
       text-align: center;
-      margin: 0 0 0 -0.18rem
+      margin: 0 0 0 -0.18rem;
     }
   }
 

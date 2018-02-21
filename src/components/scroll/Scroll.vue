@@ -1,7 +1,6 @@
 <template>
   <div :id="wrapper">
-    <ul class="layer-list"
-        style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
+    <ul class="layer-list">
       <item
       :data-product-id="item_li.product_id"
       v-for="(item_li,index) in data"

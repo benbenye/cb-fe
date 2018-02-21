@@ -1,5 +1,5 @@
 <template>
-  <section class="common-section detail-section comment-list topborder mb">
+  <section class="common-section detail-section comment-list border-top-1px mb">
     <h2>- 商品评论 -</h2>
     <p class="sub">好评度<b>{{review.total_percent}}%</b> {{review.total}}人评论</p>
     <ul>

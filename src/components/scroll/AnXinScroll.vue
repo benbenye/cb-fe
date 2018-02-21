@@ -4,14 +4,14 @@
       <li v-for="(item, index) in data" :key="index">
         <a v-if="item.certificationType"
            :href="item.act_url" cbclick="10-57">
-          <img :src="item.tag_icon"/>
+          <img class="anxin-img" :src="item.tag_icon"/>
           <p>{{item.name}}</p>
         </a>
         <a v-else
            href="javascript:void(0)"
            cbclick="10-57"
            @click="showDialog(index, item.img_list)">
-          <img :src="item.tag_icon" :data-img-list="item.img_list"/>
+          <img class="anxin-img" :src="item.tag_icon" :data-img-list="item.img_list"/>
           <p>{{item.name}}</p>
         </a>
       </li>
@@ -78,31 +78,30 @@
   };
 </script>
 
-<style lang="less" type="text/less">
+<style scoped lang="less" type="text/less">
   a {
     display: block;
   }
+
   .anxin-list {
     width: 10000px;
     font-size: 12px;
     text-align: center;
     margin-top: .1rem;
     margin-bottom: .1rem;
-  }
-  .anxin-list li {
-    display: inline-block;
-    width: 100px;
-    vertical-align: middle;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .anxin-list li img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .anxin-list li a {
-    color: #2bbc69;
+    li {
+      display: inline-block;
+      width: 100px;
+      vertical-align: middle;
+      white-space: nowrap;
+      overflow: hidden;
+      .anxin-img {
+        width: 50px;
+        height: 50px;
+      }
+      a {
+        color: #2bbc69;
+      }
+    }
   }
 </style>

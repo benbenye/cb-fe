@@ -165,6 +165,7 @@
 
     <review :review="review" :product_id="product_id"></review>
 
+    <product-cookbook-scroll :data="cookbook" v-if="cookbook.length"></product-cookbook-scroll>
     <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
   </section>
 </template>
@@ -177,6 +178,7 @@
   import Review from './blocks/Review.vue';
   import CbNav from '../../components/nav/CbNav.vue';
   import Snap from '../../components/scroll/Snap.vue';
+  import ProductCookbookScroll from '../../components/scroll/ProductCookbookScroll.vue';
   import Toast from '../../components/toast/Toast.vue';
   import ProductTitle from '../../components/title/ProductTitle.vue';
   import AppDownload from '../../components/appDownload/AppDownload.vue';
@@ -186,7 +188,7 @@
     components: ec([
       CbNav, Snap, ProductTitle,
       AnXin, AppDownload, Toast,
-      AddCart, Review
+      AddCart, Review, ProductCookbookScroll
     ]),
     data() {
       return {
@@ -210,8 +212,7 @@
     },
     mounted() {
     },
-    methods: {
-    },
+    methods: {},
     asyncData({store, route: {params: {id}}})
     {
       return store.dispatch('PRODUCTINFO_DATA', {id})
