@@ -2,7 +2,7 @@
   <div class="search-res-box" :style="{display: searchBoxDisplay ? 'block' : 'none'}"
        @scroll="scroll($event)">
     <div class="search-res-tit">
-      <div class="search-cancel" @click="withMark(hideSearchBox, '0-51')"
+      <div class="search-cancel" @click="withMark(hideSearchBox(), '0-51')"
            :style="{display: searchBoxDisplay ? 'block' : 'none'}">
         取消
       </div>
