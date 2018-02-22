@@ -17,6 +17,7 @@
 
 <script>
   import {ec} from '../../util/index'
+  import { addClass, removeClass } from '../../common/js/dom';
   export default {
     name: 'CbDialog',
     components: ec([]),
@@ -28,8 +29,18 @@
     },
     methods: {
       closeImgView: function() {
-        console.log('s')
         this.$emit('update:visible', false)
+      }
+    },
+    watch: {
+      visible: function () {
+        let html = document.documentElement;
+        let body = html.getElementsByTagName('body')[0];
+        if(this.visible){
+          addClass(body, 'dis-scroll')
+        }else{
+          removeClass(body, 'dis-scroll')
+        }
       }
     }
   };
