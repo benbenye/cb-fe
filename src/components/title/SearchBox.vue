@@ -32,8 +32,8 @@
         <h5>热门搜索</h5>
         <ul class="search-list search-hot">
           <li v-for="(item, index) in hotWord" :key="index">
-            <a :href="'/search/index?key='+item.guide_word+'&src=cb-search-hotsearch'"
-               @click="setHistoryWord(item.guide_word)">{{item.guide_word}}</a>
+            <a :href="'/search/index?key='+item+'&src=cb-search-hotsearch'"
+               @click="setHistoryWord(item)">{{item}}</a>
           </li>
         </ul>
       </template>
@@ -41,7 +41,8 @@
         <h5>热门主题</h5>
         <ul class="search-list search-theme">
           <li v-for="(item, index) in hotSpecial" :key="index">
-            <a :href="'/act/'+item.special_id+'/?src=cb-search-hotspicial'">#{{item.word}}#</a>
+            <a :href="item.link">#{{item.title}}#</a>
+            <!--<a :href="'/act/'+item.special_id+'/?src=cb-search-hotspicial'">#{{item.title}}#</a>-->
           </li>
         </ul>
       </template>
@@ -50,7 +51,7 @@
 </template>
 
 <script>
-  import {axiosWWW} from "../../util/client-axios";
+  import {axiosWWW, axiosAPI} from "../../util/client-axios";
   import {ec, withMark} from "../../util/index";
   import Loading from '../loading/Loading.vue';
   import {addClass, removeClass} from '../../common/js/dom'
@@ -89,22 +90,23 @@
       withMark,
 
       getHotSearchData: function () {
-        axiosWWW.get("/Search/getHotSearchData/").then(res => {
+        axiosAPI.get("/HotSearch/getHotSearchData/").then(res => {
           [this.hotSpecial, this.hotWord] = [
-            res.data.hotSpecial,
-            res.data.hotWord
+            res.data.hot_act,
+            res.data.hot_search
           ];
         });
       },
       getSmartWord: function () {
-        axiosWWW
-          .get("/Search/smartHotSearchOptionals/", {
+
+        axiosAPI
+          .get("/HotSearch/smartHotSearchOptionals", {
             params: {
               key: this.search_key
             }
           })
           .then(res => {
-            this.search_res = res.data || [];
+            this.search_res = res.data.search_list || [];
           });
       },
       setHistoryWord: function (w) {
