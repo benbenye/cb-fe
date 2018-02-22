@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import { addClass, removeClass } from '../../common/js/dom';
   export default {
     name: 'CbNav',
     data() {
@@ -37,6 +38,8 @@
     },
     mounted() {
       let navHeight = this.$el.offsetTop
+      let html = document.documentElement
+      let body = html.getElementsByTagName('body')[0]
       window.onscroll = () => {
         if(this.$store.state.isShowAppDownload !== this.isShowAppDownload) {
           navHeight = this.$el.offsetTop
@@ -44,9 +47,9 @@
         }
         let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
         if (scrollTop >= navHeight) {
-          document.body.setAttribute('class', 'navFixed')
+          addClass(body, 'navFixed')
         } else {
-          document.body.removeAttribute('class')
+          removeClass(body, 'navFixed')
         }
       }
     },

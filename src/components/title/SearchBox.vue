@@ -53,6 +53,7 @@
   import {axiosWWW} from "../../util/client-axios";
   import {ec, withMark} from "../../util/index";
   import Loading from '../loading/Loading.vue';
+  import {addClass, removeClass} from '../../common/js/dom'
 
   export default {
     name: "searchBox",
@@ -133,6 +134,8 @@
         this.getSmartWord();
       },
       searchBoxDisplay: function () {
+        let html = document.documentElement;
+        let body = html.getElementsByTagName('body')[0];
 
         if (!this.hotSpecial.length || !this.hotWord.length) {
           Promise.all([
@@ -142,6 +145,12 @@
             .then( e => {
             this.loadingVisible = false;
           })
+        }
+        if(this.searchBoxDisplay) {
+          addClass(body, 'dis-scroll')
+        }
+        else {
+          removeClass(body, 'dis-scroll')
         }
       }
     }
