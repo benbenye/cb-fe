@@ -40,13 +40,12 @@
       let navHeight = this.$el.offsetTop
       let html = document.documentElement
       let body = html.getElementsByTagName('body')[0]
-      html.onscroll = () => {
+      window.onscroll = (e) => {
         if(this.$store.state.isShowAppDownload !== this.isShowAppDownload) {
           navHeight = this.$el.offsetTop
           this.isShowAppDownload = this.$store.state.isShowAppDownload
         }
         let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-        console.log(scrollTop)
         if (scrollTop >= navHeight) {
 
           addClass(body, 'navFixed')

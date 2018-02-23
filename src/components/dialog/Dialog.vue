@@ -2,11 +2,15 @@
   <section v-show="visible">
     <div class="img-view" v-if="isReport && reportList">
       <h3>检测报告</h3>
-      <ul>
-        <li v-for="(item, index) in reportList" :key="index">
-          <img :src="item" alt="检测报告">
-        </li>
-      </ul>
+      <div class="d" style="height: 100%; overflow: hidden;">
+        <div class="scroll-polyfill" style="height: 10000px;">
+          <ul>
+            <li v-for="(item, index) in reportList" :key="index">
+              <img :src="item" alt="检测报告">
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="close" @click="closeImgView">×</div>
     </div>
     <!--<div class="mask" v-else>-->
@@ -56,6 +60,7 @@
     bottom: 0;
     right: 0;
     z-index: 1111;
+    overflow: hidden;
   }
 
   .img-view {
