@@ -39,10 +39,11 @@ export function UA() {
   const ua =  window.navigator.userAgent;
   const isIPad = !!ua.match(/(iPad).*OS\s([\d_]+)/);
   const isIPhone = !isIPad && !!ua.match(/(iPhone\sOS)\s([\d_]+)/);
+  const isIOS = !!ua.match(/(Mac\sOS)\sX\s([\d_]+)/);
   return {
     ua: ua,
     isWX: ua.indexOf('MicroMessenger') >= 0,
-    isIOS: isIPhone || isIPad,
+    isIOS: isIOS,
     isIPad: isIPad,
     isIPhone: isIPhone,
     isAndroid: !(isIPhone || isIPad),

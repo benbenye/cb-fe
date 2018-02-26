@@ -1,6 +1,6 @@
 <template>
   <section>
-    <app-download :isShowAppDownload.sync="isShowAppDownload"></app-download>
+    <app-download :isShowAppDownload.sync="isShowAppDownload" :productId="product_id"></app-download>
     <!--search-->
     <product-title></product-title>
     <cb-nav></cb-nav>

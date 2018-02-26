@@ -42,7 +42,7 @@ OpenApp.prototype.tryOpen = function (isFailTryOpen) {
   } else {
     openUrl = this.params.downloadAndroid;
   }
-  if (ua.isSafari && this.safariVersion >= 9) {
+  if ((ua.isSafari && this.safariVersion >= 9) || ua.isIOS) {
     setTimeout(() => {
       const U = document.createElement('a');
       U.setAttribute('href', schemaUrl);
@@ -52,7 +52,9 @@ OpenApp.prototype.tryOpen = function (isFailTryOpen) {
       E.initEvent('click', false, false);
       U.dispatchEvent(E);
     }, 0);
+    alert('s')
   } else {
+    alert(schemaUrl)
     document.querySelector(`#${this.params.downloadIFrameId}`).src = schemaUrl;
   }
   const now = Date.now();

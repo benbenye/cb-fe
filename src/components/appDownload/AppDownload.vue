@@ -21,7 +21,6 @@
         required: true
       },
       productId: {
-        default: 100
       }
     },
     data() {
