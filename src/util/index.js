@@ -43,7 +43,7 @@ export function UA() {
   return {
     ua: ua,
     isWX: ua.indexOf('MicroMessenger') >= 0,
-    isIOS: isIOS,
+    isIOS: isIPhone || isIPad,
     isIPad: isIPad,
     isIPhone: isIPhone,
     isAndroid: !(isIPhone || isIPad),

@@ -42,7 +42,7 @@ OpenApp.prototype.tryOpen = function (isFailTryOpen) {
   } else {
     openUrl = this.params.downloadAndroid;
   }
-  if ((ua.isSafari && this.safariVersion >= 9) || ua.isIOS) {
+  if ((ua.isSafari && this.params.safariVersion >= 9) ) {
     setTimeout(() => {
       const U = document.createElement('a');
       U.setAttribute('href', schemaUrl);
@@ -52,11 +52,10 @@ OpenApp.prototype.tryOpen = function (isFailTryOpen) {
       E.initEvent('click', false, false);
       U.dispatchEvent(E);
     }, 0);
-    alert('s')
   } else {
-    alert(schemaUrl)
     document.querySelector(`#${this.params.downloadIFrameId}`).src = schemaUrl;
   }
+  alert(schemaUrl)
   const now = Date.now();
   this.params.timerAry.push(setTimeout(() => {
     if (isFailTryOpen) {
@@ -107,8 +106,6 @@ OpenApp.prototype.getSafariVersion = function () {
 }
 
 OpenApp.prototype.openWithMobLink = function () {
-  console.log(this.params.path)
-  console.log(this.getSchemaUrlWithParams())
     MobLink({
       el: this.params.openAppBtnId,
       path: this.params.path,
@@ -120,11 +117,7 @@ OpenApp.prototype.openWithMobLink = function () {
 
 OpenApp.prototype.beforeOpen = function (isFailTryOpen) {
   if(ua.isWX){
-    if(ua.isAndroid){
-      console.log('use moblink')
-      alert('open wx')//?????需要两次才能成功唤起，moblink也是应用宝，我们何必呢
-      this.openWithMobLink();
-    }else{
+    if(!ua.isAndroid){
       console.log('use universal')
     }
   }else{
@@ -137,6 +130,11 @@ OpenApp.prototype.beforeOpen = function (isFailTryOpen) {
 OpenApp.prototype.open = function () {
   if(this.params.isAutoOpenApp){
     this.autoOpen()
+  }
+
+  if (ua.isWX && ua.isAndroid) {
+    //moblink 直接初始化即可
+    this.openWithMobLink();
   }
 }
 

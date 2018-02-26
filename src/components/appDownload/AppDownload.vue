@@ -20,8 +20,7 @@
         type: Boolean,
         required: true
       },
-      productId: {
-      }
+      productId: {}
     },
     data() {
       return {
@@ -29,6 +28,8 @@
         regPathProduct: /product/i,
         regPathAct: /act/i,
         regPathMember: /member/i,
+        openApp: {},
+        openAppOption: {}
       };
     },
     created() {
@@ -45,51 +46,18 @@
           const ua = res[0].UA();
           const OpenApp = res[1].default;
           const Cookie = res[2];
-          let option = {};
 
-
-          const initParams =(Cookie) => {
-            const option = {openAppBtnId: '#new-download-openapp'};
-            if (location.pathname.match(this.regPathProduct)) {
-              option.intentUrlPage = 1;
-              option.path = '/chunbo/SingleCommodityActivity';
-              option.inteneUrlParams = {
-                siteId: Cookie.get('cb_site_id') || 1,
-                siteName: Cookie.get('cb_site_name') || '北京',
-                productId: this.productId,
-                redirect_url: encodeURIComponent(location.href),
-                fromSource: location.search.indexOf('src') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('src=') > -1).split('=')[1] : '',
-                ware_id: location.search.indexOf('ware_id') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('ware_id=') > -1).split('=')[1] : ''
-              }
+          const createOpenApp = (isRemoveRedirectUrl) => {
+            this.getOpenAppOption(Cookie)
+            if(isRemoveRedirectUrl){
+              delete this.openAppOption.inteneUrlParams.redirect_url
             }
-            if (location.pathname.match(this.regPathAct)) {
-              option.intentUrlPage = 2;
-              option.path = '/chunbo/SpecialActivity';
-              option.inteneUrlParams = {
-                siteId: Cookie.get('cb_site_id') || 1,
-                siteName: Cookie.get('cb_site_name') || '北京',
-                url: location.href.split('#')[0],
-                redirect_url: encodeURIComponent(location.href),
-                ware_id: location.search.indexOf('ware_id') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('ware_id=') > -1).split('=')[1] : ''
-              }
-            }
-            if (location.pathname.match(this.regPathMember)) {
-              option.intentUrlPage = 4;
-            }
-            if (location.pathname === '/' || (location.pathname === '/index' && location.search !== '?select_city=1&src=index-top-selectcity')) {
-              option.intentUrlPage = 3;
-            }
-            return option;
-          }
-          const createOpenApp = () => {
-            option = initParams(Cookie)
-            if (!option.intentUrlPage) {
+            if (!this.openAppOption.intentUrlPage) {
               this.$emit('isShowAppDownload', false)
               return;
             }
-            const openApp = new OpenApp(option);
-            openApp.open()
-            this.openApp = openApp;
+            this.openApp = new OpenApp(this.openAppOption);
+            this.openApp.open()
           }
 
           if (ua.isWX && ua.isAndroid) {
@@ -99,19 +67,52 @@
               console.warn(`moblink: 加载出错${err.target.src}`)
             }
             script.onload = function () {
-              console.log(MobLink)
               createOpenApp();
             }
             script.src = 'http://f.moblink.mob.com/v2_0_1/moblink.js?appkey=1e2266274a360&v=5.0.1';
             document.head.appendChild(script)
-          }else{
-            createOpenApp();
+          } else {
+            createOpenApp(true);
           }
         })
     },
     methods: {
       closeAppDownload: function () {
         this.$emit('update:isShowAppDownload', false)
+      },
+      getOpenAppOption: function (Cookie) {
+        const option = {openAppBtnId: '#new-download-openapp'};
+            if (location.pathname.match(this.regPathProduct)) {
+              option.intentUrlPage = 1;
+              option.path = '/chunbo/SingleCommodityActivity';
+              option.inteneUrlParams = {
+                siteId: Cookie.get('cb_site_id') || 1,
+                siteName: Cookie.get('cb_site_name') || '北京',
+                productId: this.productId,
+//                redirect_url: encodeURIComponent(location.href),//防微信ios唤起的重定向
+                redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
+                from: location.search.indexOf('src') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('src=') > -1).split('=')[1] : ''
+              }
+            }
+            if (location.pathname.match(this.regPathAct)) {
+              option.intentUrlPage = 2;
+              option.path = '/chunbo/SpecialActivity';
+              option.inteneUrlParams = {
+                siteId: Cookie.get('cb_site_id') || 1,
+                siteName: Cookie.get('cb_site_name') || '北京',
+                url: location.href.split('#')[0],
+//                redirect_url: encodeURIComponent(location.href),
+                redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
+                ware_id: location.search.indexOf('ware_id') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('ware_id=') > -1).split('=')[1] : ''
+              }
+            }
+            if (location.pathname.match(this.regPathMember)) {
+              option.intentUrlPage = 4;
+            }
+            if (location.pathname === '/' || (location.pathname === '/index' && location.search !== '?select_city=1&src=index-top-selectcity')) {
+              option.intentUrlPage = 3;
+            }
+            this.openAppOption = option;
       }
     },
     watch: {
