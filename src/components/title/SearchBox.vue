@@ -7,7 +7,8 @@
         取消
       </div>
       <div class="search-box">
-        <input v-model="search_key" class="search" placeholder="搜索春播商品" id="search_key">
+        <input v-model="search_key" class="search" placeholder="搜索春播商品"
+               id="search_key" @keyup.enter="search(search_key)">
       </div>
     </div>
     <div class="search-res do">
@@ -129,6 +130,11 @@
       },
       scroll: function (event) {
         console.log(event)
+      },
+      search: function () {
+        this.setHistoryWord(this.search_key)
+        location.href = `/search/index?key=${this.search_key}`
+
       }
     },
     watch: {
@@ -144,11 +150,11 @@
             this.getHotSearchData(),
             this.getSmartWord()
           ])
-            .then( e => {
-            this.loadingVisible = false;
-          })
+            .then(e => {
+              this.loadingVisible = false;
+            })
         }
-        if(this.searchBoxDisplay) {
+        if (this.searchBoxDisplay) {
           addClass(body, 'dis-scroll')
         }
         else {
@@ -170,7 +176,8 @@
     bottom: 0;
     z-index: 1222;
   }
-  .loading{
+
+  .loading {
     margin-top: .2rem;
   }
 </style>
