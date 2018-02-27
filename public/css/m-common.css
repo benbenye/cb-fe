@@ -152,52 +152,6 @@ ul, li {
     -webkit-transform: rotate(45deg);
 }
 
-.title {
-    position: relative;
-    height: .44rem;
-    padding: 0 .12rem;
-    overflow: hidden;
-    font-size: 0.17rem;
-    line-height: .44rem;
-    text-align: center;
-    color: #FFF;
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#27AA60), to(#1F9C51));
-}
-
-.title-back {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 0.4rem;
-}
-
-.title-back:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    left: 0.12rem;
-    border-left: 4px solid #FFF;
-    border-top: 4px solid #FFF;
-    width: 0.14rem;
-    height: 0.14rem;
-    -webkit-transform: rotate(-45deg);
-}
-
-.title a {
-    color: #FFF;
-    font-size: .17rem;
-}
-
-.title .fr {
-    position: absolute;
-    right: .12rem;
-    font-size: .15rem;
-    line-height: .44rem;
-}
-
 /*  footer样式    */
 .footer {
     color: #666;

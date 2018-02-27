@@ -1,7 +1,0 @@
-import Cookie from 'js-cookie'
-import {axiosWWW} from '../../util/client-axios'
-
-export const position = Cookie.get();
-
-const getPosition = () => {
-}

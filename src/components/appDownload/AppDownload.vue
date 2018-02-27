@@ -67,12 +67,12 @@
               console.warn(`moblink: 加载出错${err.target.src}`)
             }
             script.onload = function () {
-              createOpenApp();
+              createOpenApp(true);
             }
             script.src = 'http://f.moblink.mob.com/v2_0_1/moblink.js?appkey=1e2266274a360&v=5.0.1';
             document.head.appendChild(script)
           } else {
-            createOpenApp(true);
+            createOpenApp();
           }
         })
     },

@@ -16,19 +16,19 @@
         </a>
       </li>
     </ul>
-    <cb-dialog :visible.sync="dialogVisible1" :isReport="true" :reportList="img_list"></cb-dialog>
+    <cb-modal :visible.sync="dialogVisible1" :isReport="true" :reportList="img_list"></cb-modal>
   </div>
 </template>
 
 <script>
   import {ec} from '../../util/index';
   import Item from '../list/Item.vue';
-  import CbDialog from '../dialog/Dialog.vue'
+  import CbModal from '../modal/Modal.vue'
 
   export default {
     name: 'AnXinScroll',
     components: ec([
-      Item, CbDialog
+      Item, CbModal
     ]),
     props: {
       wrapper: {

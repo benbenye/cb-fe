@@ -4235,7 +4235,7 @@ li.wx-share-box p {
 
 /*不在区域销售提示 && 手机端弹窗通知
 *  @update by 5Hez 2015-12-02
-*  @add .tip-dialog
+*  @add .tip-modal
 */
 .mask-bg.show {
     text-align: center;

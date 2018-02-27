@@ -6,7 +6,7 @@ import {axiosWWW} from '../../util/client-axios';
 const ua = require('../../util/index').UA();
 // intentUrlPage 首页3   专题页2   单品页1 我的春播4
 const OpenApp = function (option) {
-  if(!option || !option.intentUrlPage){
+  if (!option || !option.intentUrlPage) {
     console.warn('唤起APP必须传intentUrlPage')
   }
   this.params = Object.assign({
@@ -23,18 +23,20 @@ const OpenApp = function (option) {
   }, option);
 };
 
-OpenApp.prototype.getSchemaUrlWithParams = function () {
+OpenApp.prototype.getSchemaUrlWithParams = function (isIOSUniversal) {
   let S = this.params.inteneUrlParams;
   let ParamsStr = '';
   if (S) {
     ParamsStr = Object.keys(S).map(e => `${e}=${S[e]}`).join('&');
     ParamsStr && (ParamsStr = `&${ParamsStr}`)
   }
-  return `${this.params.intentUrl}?page=${this.params.intentUrlPage}${ParamsStr}`;
+  return `${isIOSUniversal ? this.params.IOSStartUp : this.params.intentUrl}?page=${this.params.intentUrlPage}${ParamsStr}`;
+
 }
 
 OpenApp.prototype.tryOpen = function (isFailTryOpen) {
   let schemaUrl = this.getSchemaUrlWithParams()
+  console.log(schemaUrl)
   let openUrl = null;
   // 只处理非微信浏览器
   if (ua.isIOS) {
@@ -42,37 +44,36 @@ OpenApp.prototype.tryOpen = function (isFailTryOpen) {
   } else {
     openUrl = this.params.downloadAndroid;
   }
-  if ((ua.isSafari && this.params.safariVersion >= 9) ) {
-    setTimeout(() => {
+  if ((ua.isSafari && this.params.safariVersion >= 9)) {
+    this.params.timerAry.push(setTimeout(() => {
       const U = document.createElement('a');
       U.setAttribute('href', schemaUrl);
       U.style.display = 'none';
       document.body.appendChild(U);
-      const E = document.createElement('HTMLEvents');
+      const E = document.createEvent('HTMLEvents');
       E.initEvent('click', false, false);
       U.dispatchEvent(E);
-    }, 0);
+    }, 0));
   } else {
     document.querySelector(`#${this.params.downloadIFrameId}`).src = schemaUrl;
   }
-  alert(schemaUrl)
   const now = Date.now();
   this.params.timerAry.push(setTimeout(() => {
     if (isFailTryOpen) {
-      this.params.timerAry.push(setTimeout(() => this.openFailTryOpen(now, openUrl)), 1500)
+      this.params.timerAry.push(setTimeout(() => this.openFailTryOpen(now, openUrl), 1500))
     }
   }, 100))
 }
 
 OpenApp.prototype.openFailTryOpen = function (time, url) {
   const now = Date.now();
-  if(time && now - time < 1500 + 200) {
+  if (time && now - time < 1500 + 200) {
     location.href = url;
   }
 }
 
 OpenApp.prototype.createIFrame = function () {
-  if(!this.flag) {
+  if (!this.flag) {
     const IFrame = document.createElement('iframe');
     IFrame.id = this.params.downloadIFrameId;
     document.body.appendChild(IFrame);
@@ -84,13 +85,13 @@ OpenApp.prototype.createIFrame = function () {
 }
 
 OpenApp.prototype.autoOpen = function () {
-  if(this.params.openAppBtnId) {
+  if (this.params.openAppBtnId) {
     this.beforeOpen(false);
   }
 }
 
 OpenApp.prototype.clickOpen = function () {
-  if(this.params.openAppBtnId) {
+  if (this.params.openAppBtnId) {
     this.beforeOpen(true);
   }
 }
@@ -106,21 +107,32 @@ OpenApp.prototype.getSafariVersion = function () {
 }
 
 OpenApp.prototype.openWithMobLink = function () {
-    MobLink({
-      el: this.params.openAppBtnId,
-      path: this.params.path,
-      params: {
-        uri: this.getSchemaUrlWithParams()
-      }
-    })
+  MobLink({
+    el: this.params.openAppBtnId,
+    path: this.params.path,
+    params: {
+      uri: this.getSchemaUrlWithParams()
+    }
+  })
+}
+OpenApp.prototype.openWithUniversal = function () {
+  window.location.href = this.getSchemaUrlWithParams(true);
+  const loadDateTime = Date.now();
+  this.timerAry.push(setTimeout(function () {
+    const timeOutDateTime = Date.now();
+    if (timeOutDateTime - loadDateTime < 1000) {
+      window.location.href = this.params.downloadIOS;
+    }
+  }, 25));
 }
 
 OpenApp.prototype.beforeOpen = function (isFailTryOpen) {
-  if(ua.isWX){
-    if(!ua.isAndroid){
+  if (ua.isWX) {
+    if (!ua.isAndroid) {
       console.log('use universal')
+      this.openWithUniversal()
     }
-  }else{
+  } else {
     console.log('use iframe')
     this.createIFrame();
     this.tryOpen(isFailTryOpen)
@@ -128,7 +140,7 @@ OpenApp.prototype.beforeOpen = function (isFailTryOpen) {
 }
 
 OpenApp.prototype.open = function () {
-  if(this.params.isAutoOpenApp){
+  if (this.params.isAutoOpenApp) {
     this.autoOpen()
   }
 

@@ -11,28 +11,43 @@
           </ul>
         </div>
       </div>
-      <div class="close" @click="closeImgView">×</div>
+      <div class="close" @click="close">×</div>
     </div>
-    <!--<div class="mask" v-else>-->
-    <!--<div class="content"></div>-->
-    <!--</div>-->
+    <div class="mask" v-else-if="modal">
+      <div class="container">
+        <div class="title" v-if="modal.title">{{modal.title}}</div>
+        <div class="content" v-if="modal.content" v-html="modal.content"></div>
+        <div class="button" v-if="modal.button" @click="close">
+          <template v-if="modal.button.isInline">
+            <div>ss</div>
+          </template>
+          <template v-else>
+            <div class="btn-spirit" v-if="modal.button.confirm">{{modal.button.confirm}}</div>
+            <div class="btn-spirit" v-if="modal.button.cancel">{{modal.button.cancel}}</div>
+          </template>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
   import {ec} from '../../util/index'
-  import { addClass, removeClass } from '../../common/js/dom';
+  import {addClass, removeClass} from '../../common/js/dom';
   export default {
-    name: 'CbDialog',
+    name: 'CbModal',
     components: ec([]),
-    props: ['visible', 'isReport', 'reportList'],
+    props: [
+      'visible', 'isReport', 'reportList',
+      'modal'
+    ],
     data() {
       return {
         data: {}
       };
     },
     methods: {
-      closeImgView: function() {
+      close: function () {
         this.$emit('update:visible', false)
       }
     },
@@ -40,9 +55,9 @@
       visible: function () {
         let html = document.documentElement;
         let body = html.getElementsByTagName('body')[0];
-        if(this.visible){
+        if (this.visible) {
           addClass(body, 'dis-scroll')
-        }else{
+        } else {
           removeClass(body, 'dis-scroll')
         }
       }
@@ -51,6 +66,7 @@
 </script>
 
 <style scoped lang="less" type="text/less">
+  @import "../../common/less/base";
   .mask-class {
     position: fixed;
     width: 100%;
@@ -91,5 +107,31 @@
   .mask {
     .mask-class;
     background-color: rgba(0, 0, 0, .5);
+    .container{
+      width: 280/125*1rem;
+      margin: 180/125*1rem auto 0;
+      border-radius: @imgRadius;
+      background-color: #fff;
+      .title{
+        font-size: @FontImHeaderBigger;
+        padding-top: 20/125*1rem;
+        text-align: center;
+      }
+      .content{
+        margin-bottom: 10/125*1rem;
+        margin-top: 10/125*1rem;
+      }
+      .button{
+        text-align: center;
+        .btn-spirit{
+          padding-top: 10/125*1rem;
+          padding-bottom: 10/125*1rem;
+          font-size: @FontImHeader;
+          color: @ColorImMain;
+          border-top: 1px solid #ddd;
+        }
+      }
+    }
+
   }
 </style>

@@ -167,6 +167,7 @@
 
     <product-cookbook-scroll :data="cookbook" v-if="cookbook.length"></product-cookbook-scroll>
     <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
+    <cb-position></cb-position>
   </section>
 </template>
 
@@ -182,13 +183,15 @@
   import Toast from '../../components/toast/Toast.vue';
   import ProductTitle from '../../components/title/ProductTitle.vue';
   import AppDownload from '../../components/appDownload/AppDownload.vue';
+  import CbPosition from '../../components/position/Position.vue';
 
   export default {
     name: 'Product',
     components: ec([
       CbNav, Snap, ProductTitle,
       AnXin, AppDownload, Toast,
-      AddCart, Review, ProductCookbookScroll
+      AddCart, Review, ProductCookbookScroll,
+      CbPosition
     ]),
     data() {
       return {
