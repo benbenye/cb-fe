@@ -56,8 +56,8 @@
           sku_code: 1111,
           count: this.product_num
         })
-          .then(data => {
-            if (data.status === 1) {
+          .then(res => {
+            if (res.data.status === 1) {
 //              更新购物车数量
               this.toast.visible = true
               this.toast.type = 'succ'
