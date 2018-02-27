@@ -20,9 +20,9 @@
 </template>
 
 <script>
-  import {ec, withMark} from '../../../util/index'
-  import {addCart} from '../../../common/js/product';
-  import Toast from '../../../components/toast/Toast.vue';
+  import {ec, withMark} from '../../../../util/index'
+  import {addCart} from '../../../../common/js/product';
+  import Toast from '../../../../components/toast/Toast.vue';
 
   export default {
     name: 'AddCart',

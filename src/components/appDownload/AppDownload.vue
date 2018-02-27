@@ -1,12 +1,8 @@
 <template>
-  <section>
-    <div id="new-download-app" class="download-app" v-if="isShowAppDownload">
-      <div id="new-download-openapp" class="open-app" @click="openApp.clickOpen()"></div>
-      <span id="new-download-app-close" class="close-app" @click="closeAppDownload()"></span>
-    </div>
-    <script v-if="useMobLink" src="http://f.moblink.mob.com/v2_0_1/moblink.js?appkey=1e2266274a360&v=5.0.1"
-            ref="moblink"></script>
-  </section>
+  <div id="new-download-app" class="download-app" v-if="isShowAppDownload">
+    <div id="new-download-openapp" class="open-app" @click="openApp.clickOpen()"></div>
+    <span id="new-download-app-close" class="close-app" @click="closeAppDownload()"></span>
+  </div>
 </template>
 
 <script>
@@ -49,7 +45,7 @@
 
           const createOpenApp = (isRemoveRedirectUrl) => {
             this.getOpenAppOption(Cookie)
-            if(isRemoveRedirectUrl){
+            if (isRemoveRedirectUrl) {
               delete this.openAppOption.inteneUrlParams.redirect_url
             }
             if (!this.openAppOption.intentUrlPage) {
@@ -82,37 +78,37 @@
       },
       getOpenAppOption: function (Cookie) {
         const option = {openAppBtnId: '#new-download-openapp'};
-            if (location.pathname.match(this.regPathProduct)) {
-              option.intentUrlPage = 1;
-              option.path = '/chunbo/SingleCommodityActivity';
-              option.inteneUrlParams = {
-                siteId: Cookie.get('cb_site_id') || 1,
-                siteName: Cookie.get('cb_site_name') || '北京',
-                productId: this.productId,
+        if (location.pathname.match(this.regPathProduct)) {
+          option.intentUrlPage = 1;
+          option.path = '/chunbo/SingleCommodityActivity';
+          option.inteneUrlParams = {
+            siteId: Cookie.get('cb_site_id') || 1,
+            siteName: Cookie.get('cb_site_name') || '北京',
+            productId: this.productId,
 //                redirect_url: encodeURIComponent(location.href),//防微信ios唤起的重定向
-                redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
-                from: location.search.indexOf('src') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('src=') > -1).split('=')[1] : ''
-              }
-            }
-            if (location.pathname.match(this.regPathAct)) {
-              option.intentUrlPage = 2;
-              option.path = '/chunbo/SpecialActivity';
-              option.inteneUrlParams = {
-                siteId: Cookie.get('cb_site_id') || 1,
-                siteName: Cookie.get('cb_site_name') || '北京',
-                url: location.href.split('#')[0],
+            redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
+            from: location.search.indexOf('src') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('src=') > -1).split('=')[1] : ''
+          }
+        }
+        if (location.pathname.match(this.regPathAct)) {
+          option.intentUrlPage = 2;
+          option.path = '/chunbo/SpecialActivity';
+          option.inteneUrlParams = {
+            siteId: Cookie.get('cb_site_id') || 1,
+            siteName: Cookie.get('cb_site_name') || '北京',
+            url: location.href.split('#')[0],
 //                redirect_url: encodeURIComponent(location.href),
-                redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
-                ware_id: location.search.indexOf('ware_id') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('ware_id=') > -1).split('=')[1] : ''
-              }
-            }
-            if (location.pathname.match(this.regPathMember)) {
-              option.intentUrlPage = 4;
-            }
-            if (location.pathname === '/' || (location.pathname === '/index' && location.search !== '?select_city=1&src=index-top-selectcity')) {
-              option.intentUrlPage = 3;
-            }
-            this.openAppOption = option;
+            redirect_url: encodeURIComponent(location.href.replace(/\d{3}\.\d{2}\.\d{1,3}\.\d{1,3}\:8080/, 'www.chunbo.com')),//防微信ios唤起的重定向
+            ware_id: location.search.indexOf('ware_id') > -1 ? location.search.substring(1).split('&').find(e => e.indexOf('ware_id=') > -1).split('=')[1] : ''
+          }
+        }
+        if (location.pathname.match(this.regPathMember)) {
+          option.intentUrlPage = 4;
+        }
+        if (location.pathname === '/' || (location.pathname === '/index' && location.search !== '?select_city=1&src=index-top-selectcity')) {
+          option.intentUrlPage = 3;
+        }
+        this.openAppOption = option;
       }
     },
     watch: {

@@ -37,8 +37,8 @@
 </template>
 
 <script>
-  import {ec} from '../../../util/index'
-  import SnapFullScreen from '../../../components/scroll/SnapFullScreen.vue'
+  import {ec} from '../../../../util/index'
+  import SnapFullScreen from '../../../../components/scroll/SnapFullScreen.vue'
   export default {
     name: 'Review',
     props: ['review', 'product_id'],

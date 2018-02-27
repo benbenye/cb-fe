@@ -46,14 +46,14 @@
 </template>
 
 <script>
-  import {ec} from '../util/index';
-  import Nav from '../components/nav/CbNav.vue';
-  import BannerImg from '../components/banner-img/BannerImg.vue';
-  import Floor from '../components/floor/Floor.vue';
-  import Item from '../components/list/Item.vue';
-  import IndexTitle from '../components/title/IndexTitle.vue';
-  import Scroll from '../components/scroll/Scroll.vue';
-  import ScrollCard from '../components/card/scrollCard.vue';
+  import {ec} from '../../util/index';
+  import Nav from '../../components/nav/CbNav.vue';
+  import BannerImg from '../../components/banner-img/BannerImg.vue';
+  import Floor from '../../components/floor/Floor.vue';
+  import Item from '../../components/list/Item.vue';
+  import IndexTitle from '../../components/title/IndexTitle.vue';
+  import Scroll from '../../components/scroll/Scroll.vue';
+  import ScrollCard from '../../components/card/scrollCard.vue';
 
   export default {
     components: ec([
@@ -68,7 +68,6 @@
       };
     },
     mounted() {
-      console.log(this.$el)
     },
     asyncData ({store}) {
       return store.dispatch('HOMEDATA_DATA')
@@ -77,7 +76,7 @@
 </script>
 
 <style scoped lang="less">
-  @import "../common/less/base.less";
-  @import "../common/less/base-style.less";
+  @import "../../common/less/base.less";
+  @import "../../common/less/base-style.less";
   
 </style>

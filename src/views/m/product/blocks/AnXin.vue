@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import {ec} from '../../../util/index'
-  import AnXinScroll from '../../../components/scroll/AnXinScroll.vue';
+  import {ec} from '../../../../util/index'
+  import AnXinScroll from '../../../../components/scroll/AnXinScroll.vue';
   export default {
     name: 'AnXin',
     components: ec([

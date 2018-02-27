@@ -1,5 +1,5 @@
 <template>
-    <cb-modal :visible.sync="visible" :modal="modal"></cb-modal>
+    <cb-modal :visible.sync="visible" :modal="modal" @confirm="changePosition"></cb-modal>
 </template>
 
 <script>
@@ -22,7 +22,8 @@
             cancel: '不切换',
             confirm: '切换站点'
           }
-        }
+        },
+        positionData: {}
       };
     },
     mounted() {
@@ -34,11 +35,11 @@
         axiosWWW.get('/Index/ajaxGetCityInfo')
           .then(res => {
             if (res.data) {
+              this.positionData = {...res.data}
               if (!CbAddressCity) {
                 setCityInfo({...res.data})
                 return;
               }
-              this.visible = true
               if (+res.data.city_id !== +CbAddressCity) {
                 this.visible = true
               }
@@ -47,6 +48,9 @@
       })
     },
     methods: {
+      changePosition: function () {
+        setCityInfo({...this.positionData})
+      }
     }
   };
 </script>

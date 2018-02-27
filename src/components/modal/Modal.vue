@@ -22,7 +22,7 @@
             <div>ss</div>
           </template>
           <template v-else>
-            <div class="btn-spirit" v-if="modal.button.confirm">{{modal.button.confirm}}</div>
+            <div class="btn-spirit" v-if="modal.button.confirm" @click="actMethod">{{modal.button.confirm}}</div>
             <div class="btn-spirit" v-if="modal.button.cancel">{{modal.button.cancel}}</div>
           </template>
         </div>
@@ -49,6 +49,9 @@
     methods: {
       close: function () {
         this.$emit('update:visible', false)
+      },
+      actMethod: function () {
+        this.$emit('confirm')
       }
     },
     watch: {

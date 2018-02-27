@@ -6,8 +6,10 @@ Vue.use(Router)
 // route-level code splitting
 const CookBook = () => import('../views/CookBook.vue')
 const CookBookM = () => import('../views/CookBook.m.vue')
-const Main = () => import('../views/Main.vue')
-const Product = () => import('../views/product/Product.vue')
+const Main = () => import('../views/m/Main.vue')
+const MainM = () => import('../views/m/Main.vue')
+const ProductM = () => import('../views/m/product/Product.vue')
+const Product = () => import('../views/pc/product/Product.vue')
 
 export function createRouter (platFormIsMobile) {
   if (platFormIsMobile) {
@@ -17,8 +19,8 @@ export function createRouter (platFormIsMobile) {
       scrollBehavior: () => ({ y: 0 }),
       routes: [
       { path: '/cookbook', component: CookBookM, name: 'cookbook' },
-      { path: '/product/:id', component: Product, name: 'product' },
-      { path: '/', component: Main, name: 'index' }
+      { path: '/product/:id', component: ProductM, name: 'product' },
+      { path: '/', component: MainM, name: 'index' }
       ]
     });
   }

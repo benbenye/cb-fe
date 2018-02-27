@@ -172,18 +172,18 @@
 </template>
 
 <script lang="js">
-  import {ec} from '../../util/index';
-  import {addCart} from '../../common/js/product';
+  import {ec} from '../../../util/index';
+  import {addCart} from '../../../common/js/product';
   import AnXin from './blocks/AnXin.vue';
   import AddCart from './blocks/AddCart.vue';
   import Review from './blocks/Review.vue';
-  import CbNav from '../../components/nav/CbNav.vue';
-  import Snap from '../../components/scroll/Snap.vue';
-  import ProductCookbookScroll from '../../components/scroll/ProductCookbookScroll.vue';
-  import Toast from '../../components/toast/Toast.vue';
-  import ProductTitle from '../../components/title/ProductTitle.vue';
-  import AppDownload from '../../components/appDownload/AppDownload.vue';
-  import CbPosition from '../../components/position/Position.vue';
+  import CbNav from '../../../components/nav/CbNav.vue';
+  import Snap from '../../../components/scroll/Snap.vue';
+  import ProductCookbookScroll from '../../../components/scroll/ProductCookbookScroll.vue';
+  import Toast from '../../../components/toast/Toast.vue';
+  import ProductTitle from '../../../components/title/ProductTitle.vue';
+  import AppDownload from '../../../components/appDownload/AppDownload.vue';
+  import CbPosition from '../../../components/position/Position.vue';
 
   export default {
     name: 'Product',
@@ -225,5 +225,5 @@
 </script>
 
 <style lang="less" type="text/less">
-  @import "../../common/less/base-style";
+  @import "../../../common/less/base-style";
 </style>
