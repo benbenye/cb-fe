@@ -7,7 +7,7 @@
 
 <script>
   import {ec} from '../../util/index';
-  import {axiosDefault} from '../../util/client-axios';
+  import {axiosWWW} from '../../util/client-axios';
   export default {
     name: 'AppDownload',
     components: ec([]),
@@ -25,7 +25,8 @@
         regPathAct: /act/i,
         regPathMember: /member/i,
         openApp: {},
-        openAppOption: {}
+        openAppOption: {},
+        apkVersion: 'ChunBoMall_3.8.0.apk'
       };
     },
     created() {
@@ -36,12 +37,14 @@
       Promise.all([
         import('../../util/index'),
         import('./AppDownload'),
-        import('js-cookie')
+        import('js-cookie'),
+        axiosWWW.get('/app/printAppVersion')
       ])
         .then(res => {
           const ua = res[0].UA();
           const OpenApp = res[1].default;
           const Cookie = res[2];
+          this.apkVersion = res[3].data;
 
           const createOpenApp = (isRemoveRedirectUrl) => {
             this.getOpenAppOption(Cookie)
@@ -77,7 +80,7 @@
         this.$emit('update:isShowAppDownload', false)
       },
       getOpenAppOption: function (Cookie) {
-        const option = {openAppBtnId: '#new-download-openapp'};
+        const option = {openAppBtnId: '#new-download-openapp', apkVersion: this.apkVersion};
         if (location.pathname.match(this.regPathProduct)) {
           option.intentUrlPage = 1;
           option.path = '/chunbo/SingleCommodityActivity';

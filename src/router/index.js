@@ -19,7 +19,7 @@ export function createRouter (platFormIsMobile) {
       scrollBehavior: () => ({ y: 0 }),
       routes: [
       { path: '/cookbook', component: CookBookM, name: 'cookbook' },
-      { path: '/product/:id', component: ProductM, name: 'product' },
+      { path: '/product/:id/*', component: ProductM, name: 'product' },
       { path: '/', component: MainM, name: 'index' }
       ]
     });

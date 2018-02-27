@@ -16,7 +16,7 @@ const OpenApp = function (option) {
     intentUrl: 'chunbo://chunbo/startApp',
     downloadIFrameId: 'downloadApp_loadIFrame',
     downloadIOS: 'itms-apps://itunes.apple.com/us/app/chun-bo/id967139095?l=zh&ls=1&mt=8',
-    downloadAndroid: `//static.chunboimg.com/app/ChunBoMall_3.7.2.apk`,
+    downloadAndroid: `//static.chunboimg.com/app/${option.apkVersion}`,
     safariVersion: this.getSafariVersion(),
     timerAry: [],
     flag: false
