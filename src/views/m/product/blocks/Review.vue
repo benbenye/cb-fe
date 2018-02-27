@@ -10,7 +10,7 @@
             <span class="comment-user">{{item.nickname}}</span>
             <span class="join-time">已在春播购买{{item.join_month}}</span>
           </p>
-          <small class="comment-date">{{item.creation_time}}</small>
+          <small class="comment-date">{{item.creation_time | substr}}</small>
         </div>
         <div class="comment-mianBox">
           <div class="comment-content">
@@ -66,6 +66,9 @@
         return str.replace(/\.jpg/, function () {
           return '_200_200.jpg'
         })
+      },
+      substr: function (str) {
+        return str.substr(0, 10)
       }
     }
   };
