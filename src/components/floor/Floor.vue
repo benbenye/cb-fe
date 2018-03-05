@@ -6,11 +6,10 @@
         <h3><span>{{item.name}}</span></h3>
       </a>
       <div class="layer-sub-desc">{{item.basic.floor_title}}</div>
-      <a :href="'/act/61545?src=index-'+item.basic.parent_id+'-B'" class="layer-img cb-lazy-loading-bg"
+      <a :href="'/act/61545?src=index-'+item.basic.parent_id+'-B'"
          style="background-color: inherit !important;">
-        <div class="cb-lazy cb-lazy-bg loaded"
-             data-original="http://i0.chunboimg.com/group1/M00/22/07/Cv4Jrlo840SAOu6VAALKKt6kanM420.jpg"
-             :style="{backgroundImage: 'url('+item.banner1.pic+')'}"></div>
+        <div class="cb-lazy-bg"
+             v-lazy:background-image="item.banner1.pic"></div>
       </a>
       <list-r1-c2 :lc="item"></list-r1-c2>
     </div>
@@ -38,5 +37,22 @@
   };
 </script>
 
-<style scoped>
+<style scoped type="text/less" lang="less">
+  .lc-list{
+    .cb-lazy-bg{
+      padding-top: 46.153846%;
+      background-size: 100%;
+      &[lazy=loading] {
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: block;
+        background-color: #ccc;
+        background-size: .353333rem;
+      }
+    }
+  }
+
+  .layer-list li.more .cb-lazy-loading-bg {
+    background-color: inherit;
+  }
 </style>

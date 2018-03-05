@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueLazyLoad from 'vue-lazyload'
 import App from './App.vue'
 import { createStore } from './store'
 import { createRouter } from './router'
@@ -8,6 +9,11 @@ import * as filters from './util/filters'
 
 // mixin for handling title
 Vue.mixin(titleMixin)
+
+Vue.use(VueLazyLoad, {
+  lazyComponent: true,
+  loading: 'http://static.chunboimg.com/m/0.1.0/img/loading.gif'
+})
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {

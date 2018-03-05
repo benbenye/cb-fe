@@ -5163,33 +5163,6 @@ li.wx-share-box p {
     color: #999;
 }
 
-/*首页 lazyload by 5Hez 2015-12-07*/
-.cb-lazy-loading-bg {
-    background-image: url(http://static.chunboimg.com/m/0.1.0/img/loading.gif);
-    background-repeat: no-repeat;
-    background-position: center center;
-    display: block;
-    background-color: #ccc;
-    background-size: .353333rem;
-}
-
-/*loading bg*/
-.cb-lazy-img {
-}
-
-/*lazyload images*/
-.cb-lazy-bg {
-}
-
-/*lazyload use background-images*/
-.layer-img .cb-lazy-bg {
-    padding-top: 46.153846%;
-    background-size: 100%;
-}
-
-.layer-list li.more .cb-lazy-loading-bg {
-    background-color: inherit;
-}
 
 /*首页广告位 by 5HeZ 2016-02-29*/
 .cb-ad-card {

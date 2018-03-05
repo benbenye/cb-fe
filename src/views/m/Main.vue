@@ -14,19 +14,19 @@
     <ul class="top-topic mb">
       <li>
         <a href="http://www.chunbo.com/tuan/activity/list">
-          <img :src="home.data.banners_below_focus.left.img" alt="火热促销" width="111" height="88">
+          <img v-lazy="home.data.banners_below_focus.left.img" alt="火热促销" width="111" height="88">
           <div class="topic-name">好友团</div>
         </a>
       </li>
       <li>
         <a href="http://www.chunbo.com//act/63207?keyStr=index-top-mrys">
-          <img :src="home.data.banners_below_focus.center.img" alt="每日知食" width="111" height="88">
+          <img v-lazy="home.data.banners_below_focus.center.img" alt="每日知食" width="111" height="88">
           <div class="topic-name">每日知食</div>
         </a>
       </li>
       <li>
         <a :href="home.data.banners_below_focus.right.link">
-          <img :src="home.data.banners_below_focus.right.img" :alt="home.data.banners_below_focus.right.title"
+          <img v-lazy="home.data.banners_below_focus.right.img" :alt="home.data.banners_below_focus.right.title"
                width="111" height="88">
           <div class="topic-name">{{home.data.banners_below_focus.right.title}}</div>
         </a>
@@ -47,6 +47,7 @@
 
 <script>
   import {ec} from '../../util/index';
+  import LazyLoad from '../../components/lazyLoad/LazyLoad.vue';
   import Nav from '../../components/nav/CbNav.vue';
   import BannerImg from '../../components/banner-img/BannerImg.vue';
   import Floor from '../../components/floor/Floor.vue';
@@ -59,12 +60,15 @@
     components: ec([
       Nav, BannerImg, Floor,
       Item, Scroll, ScrollCard,
-      IndexTitle
+      IndexTitle, LazyLoad
     ]),
     name: 'main',
     data() {
       return {
-        home: this.$store.state.homeData
+        home: this.$store.state.homeData,
+        img: {
+          src: 'http://i1.chunboimg.com/group1/M00/1B/71/Cv4Jrln6wWGAA3y_AAEyNPz9Id8509.png'
+        }
       };
     },
     mounted() {

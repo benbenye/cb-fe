@@ -9,8 +9,8 @@
 
     <li class="more" :style="{ backgroundColor: lc.basic.m_title_color }">
       <a href="/list/index/cid/3695-0-0?src=index-48153-E">
-        <img class="cb-lazy loaded"
-             :src="lc.basic.m_title_pic"></a>
+        <img class="cb-lazy"
+             v-lazy="lc.basic.m_title_pic"></a>
     </li>
   </ul>
 </template>
