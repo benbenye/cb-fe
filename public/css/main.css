@@ -5165,7 +5165,7 @@ li.wx-share-box p {
 
 /*首页 lazyload by 5Hez 2015-12-07*/
 .cb-lazy-loading-bg {
-    background-image: url(/m/0.1.0/img/loading.gif);
+    background-image: url(http://static.chunboimg.com/m/0.1.0/img/loading.gif);
     background-repeat: no-repeat;
     background-position: center center;
     display: block;
