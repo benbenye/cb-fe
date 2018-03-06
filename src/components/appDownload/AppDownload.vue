@@ -52,7 +52,7 @@
               delete this.openAppOption.inteneUrlParams.redirect_url
             }
             if (!this.openAppOption.intentUrlPage) {
-              this.$emit('isShowAppDownload', false)
+              this.$emit('update:isShowAppDownload', false)
               return;
             }
             this.openApp = new OpenApp(this.openAppOption);

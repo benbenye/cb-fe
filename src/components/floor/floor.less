@@ -1,0 +1,125 @@
+@import "../../common/less/base-style";
+
+.layer-list {
+  text-align: left;
+  li {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 49%;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin: .1rem 0 0 2%;
+    vertical-align: top;
+    overflow: hidden;
+    padding-bottom: .2rem;
+    &:nth-of-type(2n-1) {
+      margin-left: 0;
+    }
+    &.more {
+      position: relative;
+      .item-wrapper {
+        opacity: 0;
+      }
+      .more-active {
+        position: absolute;
+        top: 0;
+        text-align: center;
+        width: 100%;
+        img {
+          margin-top: .175rem;
+          &[lazy=loading] {
+            margin-top: .75rem;
+            width: 30%;
+          }
+        }
+      }
+    }
+    .item-wrapper {
+      display: block;
+      .img-place {
+        height: 0;
+        padding-top: 23/29*100%;
+      }
+      p,
+      h6 {
+        text-indent: .05rem;
+        padding-top: .03rem;
+        font-size: .11rem;
+        white-space: nowrap;
+      }
+      p {
+        font-size: .10rem;
+        &.sub {
+          padding-top: .01rem;
+        }
+        &.price {
+          padding-top: .05rem;
+          color: #e75f44;
+          span {
+            font-size: .12rem;
+            color: #999999;
+            text-decoration: line-through;
+          }
+          b {
+            font-size: 0.15rem;
+            font-weight: normal;
+            color: #2bbc69;
+            margin-right: 8px;
+            i.money {
+              font-size: .12rem;
+              font-family: '黑体';
+              margin-right: 2px;
+            }
+          }
+          em {
+            font-size: 0.15rem;
+            margin-right: 8px;
+            i.money {
+              font-size: .12rem;
+              font-family: '黑体';
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+    }
+    .i-cart {
+      width: .3rem;
+      height: .3rem;
+      background-image: url(https://sstatic.chunboimg.com/m/0.1.0/img/cart.png);
+      background-size: contain;
+      position: absolute;
+      bottom: .05rem;
+      right: .05rem;
+      background-repeat: no-repeat;
+      i {
+        background: #e75f44;
+        color: #fff;
+        text-align: center;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: -0.03rem;
+        top: -0.05rem;
+        font-size: .12rem;
+        line-height: 16px;
+        z-index: 2;
+      }
+    }
+    .no-good {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      height: 1.2rem;
+      background: rgba(0, 0, 0, .3);
+      color: #fff;
+      text-align: center;
+      line-height: 1.2rem;
+    }
+  }
+
+}
+
+

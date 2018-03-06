@@ -33,7 +33,7 @@
       }
     },
     mounted() {
-      const li = this.$el.querySelectorAll('li')[this.data.length-1];
+      const li = this.$el.querySelectorAll('li')[this.data.length - 1];
       this.liWidth = li.offsetWidth;
       this.liStyle = li.currentStyle || getComputedStyle(li);
       this.$el.querySelector('ul').style.width = `${(this.liWidth + parseInt(this.liStyle.marginLeft) + parseInt(this.liStyle.marginRight)) * this.data.length}px`;
@@ -58,36 +58,30 @@
 </script>
 
 <style scoped lang="less" type="text/less">
-  /*首页 好货推荐 by 5Hez  2015-10-29*/
-  .good-recommend {
-    background-color: #fff;
-  }
-
-  .good-recommend li {
-    width: 180px;
-    margin-left: 14px;
-    margin-top: 0;
-    height: inherit;
-    padding-bottom: .35rem;
-    border: 0;
-  }
-
-  .good-recommend li:nth-of-type(2n-1) {
-    margin-left: 10px;
-  }
-
-  .good-recommend li:first-child {
-    margin-left: 0;
-  }
-
-  .good-recommend li img {
-    width: 100%;
-    height: inherit;
-    border-radius: 4px;
-  }
-
-  .good-recommend .layer-list li p, .good-recommend .layer-list li h6 {
-    text-indent: 0;
+  .layer-list {
+    li {
+      width: 180px !important;
+      margin-left: 14px !important;
+      margin-top: 0 !important;
+      height: inherit;
+      padding-bottom: .35rem;
+      border: 0 !important;
+      &:nth-of-type(2n-1) {
+        margin-left: 10px;
+      }
+      &:first-child {
+        margin-left: 0 !important;
+      }
+      img {
+        width: 100%;
+        height: inherit;
+        border-radius: 4px;
+      }
+      .layer-list li p,
+      .layer-list li h6 {
+        text-indent: 0;
+      }
+    }
   }
 
 </style>

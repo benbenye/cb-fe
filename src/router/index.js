@@ -11,27 +11,28 @@ const MainM = () => import('../views/m/Main.vue')
 const ProductM = () => import('../views/m/product/Product.vue')
 // const Product = () => import('../views/pc/product/Product.vue')
 
-export function createRouter (platFormIsMobile) {
+export function createRouter(platFormIsMobile) {
   if (platFormIsMobile) {
     return new Router({
       mode: 'history',
       fallback: false,
-      scrollBehavior: () => ({ y: 0 }),
+      scrollBehavior: () => ({y: 0}),
       routes: [
-      { path: '/cookbook', component: CookBookM, name: 'cookbook' },
-      { path: '/product/:id', component: ProductM, name: 'product' },
-      { path: '/', component: MainM, name: 'index' }
+        {path: '/cookbook', component: CookBookM, name: 'cookbook'},
+        {path: '/product/:id', component: ProductM, name: 'product'},
+        {path: '/', component: MainM, name: 'index'},
+        {path: '/index', redirect: '/'},
       ]
     });
   }
   return new Router({
     mode: 'history',
     fallback: false,
-    scrollBehavior: () => ({ y: 0 }),
+    scrollBehavior: () => ({y: 0}),
     routes: [
-      { path: '/cookbook', component: CookBookM, name: 'cookbook' },
-      { path: '/product/:id', component: ProductM, name: 'product' },
-      { path: '/', component: MainM, name: 'index' }
+      {path: '/cookbook', component: CookBookM, name: 'cookbook'},
+      {path: '/product/:id', component: ProductM, name: 'product'},
+      {path: '/', component: MainM, name: 'index'}
     ]
   })
 }

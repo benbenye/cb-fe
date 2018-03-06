@@ -1,8 +1,8 @@
 <template>
-  <div class="layer good-recommend border-bottom-1px">
+  <div class="layer border-bottom-1px border-top-1px">
     <h3><span>{{rollData.title}}</span></h3>
     <div class="layer-sub-desc">{{rollData.sub_title}}</div>
-    <scroll :wrapper="'good-recommend-'+index" :data="rollData.product_list">
+    <scroll :wrapper="'good-recommend-'+index" :data="rollData.product_list" class="card-scroll">
     </scroll>
   </div>
 </template>
@@ -29,4 +29,13 @@
   }
 </script>
 
-<style type="text/less"></style>
+<style scoped lang="less" type="text/less">
+  @import "layer";
+  .layer {
+    background-color: #fff;
+    margin-bottom: .1rem;
+    .card-scroll{
+      text-align: left;
+    }
+  }
+</style>

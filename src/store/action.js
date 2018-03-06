@@ -6,10 +6,12 @@ import axios from 'axios';
 
 export default function createActions(httpWWWClientConfig, httpAPIClientConfig = {headers: {}}, platform) {
   const httpApiClient = axios.create(httpAPIClientConfig)
+  const httpWWWClient = axios.create(httpWWWClientConfig)
 
   const {getCookBook} = createAPI(httpApiClient);
   const {getHomeData} = createAPI(httpApiClient);
   const {getProductInfo} = createAPI(httpApiClient);
+  const {getCityInfo} = createAPI(httpWWWClient);
 
   return {
     // ensure data for rendering given list type
@@ -26,6 +28,13 @@ export default function createActions(httpWWWClientConfig, httpAPIClientConfig =
         })
         .catch(err => {
           console.log(err)
+        })
+    },
+    CITYINFO: ({commit}) => {
+      return getCityInfo()
+        .then(res => {
+          console.log(res.data)
+          commit('SET_CITYINFO', res.data)
         })
     },
     PRODUCTINFO_DATA: ({commit}, {id}) => {

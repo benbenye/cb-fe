@@ -10,6 +10,9 @@ export default function createAPI(httpClient) {
     },
     getProductInfo(id) {
       return httpClient.get(`/Product/GetProductInfo/product_id/${id}`)
+    },
+    getCityInfo() {
+      return httpClient.get(`/Index/ajaxGetCityInfo`)
     }
   }
 }

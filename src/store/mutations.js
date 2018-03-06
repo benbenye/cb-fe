@@ -13,6 +13,10 @@ export default {
     state.productInfo = data
   },
 
+  SET_CITYINFO: (state, data) => {
+    state.cityInfo = data
+  },
+
   SET_ISSHOWAPPDOWNLOAD: (state, data) => {
     state.isShowAppDownload = data
   },

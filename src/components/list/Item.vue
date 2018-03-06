@@ -1,10 +1,7 @@
 <template>
-
   <li>
-    <router-link :to="{name: 'product', params: {id: item_li.pid}, query: {src: 'index-'+item_li.pid+'-D#d1'}}">
-      <img class=""
-           :alt="item_li.title"
-           v-lazy="item_li.url">
+    <a :href="'/product/'+item_li.pid+'?src=index-'+item_li.pid+'-D#d1'" class="item-wrapper">
+      <div class="img-place cb-lazy-bg" v-lazy:background-image="item_li.url"></div>
       <h6>{{item_li.shortname}}</h6>
       <p class="sub">{{item_li.subname}}</p>
       <!--赠品 没有数据结构 暂缺-->
@@ -18,7 +15,7 @@
           <b class="chunbo"><i class="money">¥</i>{{item_li.chunbo_price}}</b>
         </template>
       </p>
-    </router-link>
+    </a>
     <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id"
        @click="addCart(item_li.product_id, 1); clickMark({clickData:'1-7', pid:item_li.product_id})"></a>
     <div class="item-icon-box" v-if="item_li.promotion_price != 0.00">
@@ -66,5 +63,6 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="less" type="text/less">
+  @import "../floor/floor";
 </style>

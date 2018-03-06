@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div v-if="isSelectCity">
+    <select-city></select-city>
+  </div>
+  <div v-else>
+    <app-download :isShowAppDownload.sync="isShowAppDownload"></app-download>
     <index-title></index-title>
     <cb-nav></cb-nav>
 
@@ -14,30 +18,29 @@
     <ul class="top-topic mb">
       <li>
         <a href="http://www.chunbo.com/tuan/activity/list">
-          <img v-lazy="home.data.banners_below_focus.left.img" alt="火热促销" width="111" height="88">
+          <img :src="home.data.banners_below_focus.left.img" alt="火热促销">
           <div class="topic-name">好友团</div>
         </a>
       </li>
       <li>
         <a href="http://www.chunbo.com//act/63207?keyStr=index-top-mrys">
-          <img v-lazy="home.data.banners_below_focus.center.img" alt="每日知食" width="111" height="88">
+          <img :src="home.data.banners_below_focus.center.img" alt="每日知食">
           <div class="topic-name">每日知食</div>
         </a>
       </li>
       <li>
         <a :href="home.data.banners_below_focus.right.link">
-          <img v-lazy="home.data.banners_below_focus.right.img" :alt="home.data.banners_below_focus.right.title"
-               width="111" height="88">
+          <img :src="home.data.banners_below_focus.right.img" :alt="home.data.banners_below_focus.right.title">
           <div class="topic-name">{{home.data.banners_below_focus.right.title}}</div>
         </a>
       </li>
     </ul>
 
     <scroll-card
-      v-for="(item, index) in home.data.roll_list"
-      :key="index"
-      :rollData="item"
-      :index="index"
+    v-for="(item, index) in home.data.roll_list"
+    :key="index"
+    :rollData="item"
+    :index="index"
     >
     </scroll-card>
 
@@ -47,7 +50,6 @@
 
 <script>
   import {ec} from '../../util/index';
-  import LazyLoad from '../../components/lazyLoad/LazyLoad.vue';
   import Nav from '../../components/nav/CbNav.vue';
   import BannerImg from '../../components/banner-img/BannerImg.vue';
   import Floor from '../../components/floor/Floor.vue';
@@ -55,20 +57,21 @@
   import IndexTitle from '../../components/title/IndexTitle.vue';
   import Scroll from '../../components/scroll/Scroll.vue';
   import ScrollCard from '../../components/card/scrollCard.vue';
+  import AppDownload from '../../components/appDownload/AppDownload.vue';
+  import SelectCity from './SelectCity.vue';
 
   export default {
     components: ec([
       Nav, BannerImg, Floor,
       Item, Scroll, ScrollCard,
-      IndexTitle, LazyLoad
+      IndexTitle, AppDownload, SelectCity
     ]),
     name: 'main',
     data() {
       return {
         home: this.$store.state.homeData,
-        img: {
-          src: 'http://i1.chunboimg.com/group1/M00/1B/71/Cv4Jrln6wWGAA3y_AAEyNPz9Id8509.png'
-        }
+        isShowAppDownload: true,
+        isSelectCity: +this.$route.query.select_city === 1
       };
     },
     mounted() {
@@ -79,8 +82,8 @@
   };
 </script>
 
-<style scoped lang="less">
+<style lang="less">
   @import "../../common/less/base.less";
   @import "../../common/less/base-style.less";
-  
+
 </style>
