@@ -1044,35 +1044,6 @@ i.icon-gift {
     margin-top: -0.02rem;
 }
 
-body > footer {
-    padding: .07rem;
-    border-top: 1px solid #F3F2F3;
-    text-align: center;
-    color: #999999;
-    background: #fff;
-    margin-top: .1rem;
-}
-
-body > footer .footer-tool {
-    padding-bottom: .07rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: .07rem;
-}
-
-body > footer .footer-tool .toTop {
-    float: right;
-    margin: 0 .1rem;
-}
-
-body > footer a {
-    margin: .1rem;
-}
-
-body > footer a.on {
-    color: #e75f44;
-}
-
 #wrapper {
     position: absolute;
     z-index: 1;

@@ -45,6 +45,8 @@
     </scroll-card>
 
     <floor :list_lc="home.data.list_lc"></floor>
+
+    <cb-footer></cb-footer>
   </div>
 </template>
 
@@ -59,12 +61,14 @@
   import ScrollCard from '../../components/card/scrollCard.vue';
   import AppDownload from '../../components/appDownload/AppDownload.vue';
   import SelectCity from './SelectCity.vue';
+  import CbFooter from '../../components/footer/Footer.vue';
 
   export default {
     components: ec([
       Nav, BannerImg, Floor,
       Item, Scroll, ScrollCard,
-      IndexTitle, AppDownload, SelectCity
+      IndexTitle, AppDownload, SelectCity,
+      CbFooter
     ]),
     name: 'main',
     data() {
