@@ -55,6 +55,13 @@ module.exports = {
           '^/api': ''
         }
       },
+      '/apiMock': {
+        target: 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/apiMock': ''
+        }
+      },
       '/www': {
         target: 'http://www.chunbo.com',
         changeOrigin: true,

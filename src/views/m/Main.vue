@@ -1,8 +1,5 @@
 <template>
-  <div v-if="isSelectCity">
-    <select-city></select-city>
-  </div>
-  <div v-else>
+  <div>
     <app-download :isShowAppDownload.sync="isShowAppDownload"></app-download>
     <index-title></index-title>
     <cb-nav></cb-nav>
@@ -51,7 +48,7 @@
 </template>
 
 <script>
-  import {ec} from '../../util/index';
+  import {ec, getMemebr} from '../../util/index';
   import Nav from '../../components/nav/CbNav.vue';
   import BannerImg from '../../components/banner-img/BannerImg.vue';
   import Floor from '../../components/floor/Floor.vue';
@@ -62,13 +59,14 @@
   import AppDownload from '../../components/appDownload/AppDownload.vue';
   import SelectCity from './SelectCity.vue';
   import CbFooter from '../../components/footer/Footer.vue';
+  import H5ToWx from '../../components/h5-to-wx/H5ToWx.vue';
 
   export default {
     components: ec([
       Nav, BannerImg, Floor,
       Item, Scroll, ScrollCard,
       IndexTitle, AppDownload, SelectCity,
-      CbFooter
+      CbFooter, H5ToWx
     ]),
     name: 'main',
     data() {
@@ -79,6 +77,11 @@
       };
     },
     mounted() {
+      getMemebr()
+        .then(res => {
+          console.log(res.data)
+
+        });
     },
     asyncData ({store}) {
       return store.dispatch('HOMEDATA_DATA')

@@ -6,7 +6,8 @@ export const axiosWWW = axios.create({
     timeout: 3000
 })
 
-export const axiosDefault = axios.create({
+export const axiosAPIMock = axios.create({
+  baseURL: isDev ? 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe' : 'http://api.chunbo.com',
   timeout: 3000
 })
 
