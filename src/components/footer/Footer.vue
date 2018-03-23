@@ -1,7 +1,11 @@
 <template>
   <footer class="border-top-1px">
     <div class="footer-tool border-bottom-1px">
-      <a href="/Login/index.html" @click="clickMark({clickData: '1-1'})">注册<span>|</span>登录</a>
+      <template v-if="username">
+        <a href="/Member/index.html">{{username}}</a><span>|</span><a href="/Login/logout.html">退出</a>
+      </template>
+      <a v-else href="/Login/index.html" @click="clickMark({clickData: '1-1'})">注册<span>|</span>登录</a>
+
       <a href="javascript:;" class="toTop" @click="goToTop">回到顶部</a></div>
 
     <a href="javascript:;" class="on" value="1">触屏版</a>|
@@ -15,6 +19,7 @@
   import {ec, clickMark} from '../../util/index';
   export default {
     name: 'CbFooter',
+    props: ['username'],
     components: ec([]),
     data() {
       return {};

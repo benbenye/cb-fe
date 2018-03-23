@@ -3,7 +3,7 @@
  */
 import _ from 'lodash';
 import Cookie  from 'js-cookie';
-import {axiosAPIMock} from './client-axios';
+import {axiosAPI} from './client-axios';
 
 const getRandomNumberStats = function (n) {
   const chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -39,7 +39,7 @@ export function setTitle(text) {
 }
 
 export function UA() {
-  const ua =  window.navigator.userAgent;
+  const ua = window.navigator.userAgent;
   const isIPad = !!ua.match(/(iPad).*OS\s([\d_]+)/);
   const isIPhone = !isIPad && !!ua.match(/(iPhone\sOS)\s([\d_]+)/);
   const isIOS = !!ua.match(/(Mac\sOS)\sX\s([\d_]+)/);
@@ -56,8 +56,9 @@ export function UA() {
 }
 
 export function getMemebr() {
-  if(Cookie.get('PHPSESSID')){
-    return axiosAPIMock.get(`/member/GetMember/session_id/${Cookie.get('PHPSESSID')}`)
+  const PHPSESSID = Cookie.get('PHPSESSID');
+  if (PHPSESSID) {
+    return axiosAPI.get(`/member/GetMember/session_id/${PHPSESSID}`);
   }
   return new Promise((res, rej) => res({
     data: {

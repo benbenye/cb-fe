@@ -12,6 +12,10 @@ export const axiosAPIMock = axios.create({
 })
 
 export const axiosAPI = axios.create({
-    baseURL: isDev ? '/api' : 'http://api.chunbo.com',
-    timeout: 3000
+    baseURL: !isDev ? '/api' : 'http://api1.uat.chunbo.com',
+    timeout: 3000,
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;',
+    'sessionid': '9494qvn3pqui8ve95aio7q1ek7'
+  }
 })

@@ -16,8 +16,7 @@
         </li>
         <li><a href="/cart/?src=top-nav-shoppingcart">
           <i class="nav-3"></i>购物车
-          <i class="num" id="AppCartNums"
-             style="display: none;">0</i>
+          <i v-if="num" class="num" id="AppCartNums">{{num}}</i>
         </a>
         </li>
         <li><a href="/member/?src=top-nav-mychunbo">
@@ -31,6 +30,7 @@
   import { addClass, removeClass } from '../../common/js/dom';
   export default {
     name: 'CbNav',
+    props: ['num'],
     data() {
       return {
         isShowAppDownload: this.$store.state.isShowAppDownload

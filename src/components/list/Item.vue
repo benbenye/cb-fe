@@ -21,42 +21,53 @@
     <div class="item-icon-box" v-if="item_li.promotion_price != 0.00">
       <i class="icon i-xsqg"></i>
     </div>
+    <toast :visible.sync="toast.visible" :type="toast.type" :mes="toast.mes"></toast>
   </li>
 </template>
 
 <script>
-  import {clickMark} from '../../util/index';
-  const axios = require('axios');
-  const instance = axios.create({
-    baseURL: '/www',
-    timeout: 1000,
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-  });
+  import {clickMark, ec} from '../../util/index';
+  import {axiosAPI} from '../../util/client-axios';
+  import Toast from '../../components/toast/Toast.vue';
+  import qs from 'qs'
   export default {
     name: 'item',
+    components: ec([
+      Toast
+    ]),
     props: {
       item_li: {
         type: Object
       }
     },
     data() {
-      return {};
+      return {
+        toast: {
+          visible: false,
+          type: 'warn',
+          mes: ''
+        }
+      };
     },
     methods: {
       clickMark: clickMark,
       addCart: function (pid, num) {
-        instance.get('/Cart/add', {
-          params: {
+        axiosAPI.post('/Cart/addToCart', qs.stringify({
             product_id: pid,
             site_id: 0,
             sku_num: num || 1,
-//            sku_code: 0,
-            trackid: 0,
-            source: 0
-          }
-        })
+          })
+        )
           .then(res => {
-            console.log(res)
+            if(res.data.flag === 1) {
+              this.toast.visible = true;
+              this.toast.type = 'succ';
+              this.toast.mes = '加入购物车成功'
+            }else{
+              this.toast.visible = true;
+              this.toast.type = 'warn';
+              this.toast.mes = res.data.error_message
+            }
           })
       }
     }

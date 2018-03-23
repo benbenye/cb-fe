@@ -40,16 +40,8 @@ module.exports = {
           '^/api/getCookBook': ''
         }
       },
-      '/api/home': {
-        target: 'http://api.chunbo.com/home/newindex',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api/home': ''
-        }
-      },
       '/api': {
-        // target: 'https://easy-mock.com/mock/5a712d21eaec52606d71e4e7/cb-fe',
-        target: 'https://api.chunbo.com',
+        target: 'http://api1.uat.chunbo.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

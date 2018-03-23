@@ -2,7 +2,7 @@
   <div>
     <app-download :isShowAppDownload.sync="isShowAppDownload"></app-download>
     <index-title></index-title>
-    <cb-nav></cb-nav>
+    <cb-nav :num="cartInfo.product_nums"></cb-nav>
 
     <banner-img
     :link="item.link"
@@ -43,12 +43,13 @@
 
     <floor :list_lc="home.data.list_lc"></floor>
 
-    <cb-footer></cb-footer>
+    <cb-footer :username="userInfo.nickname"></cb-footer>
   </div>
 </template>
 
 <script>
   import {ec, getMemebr} from '../../util/index';
+  import {axiosAPI} from '../../util/client-axios';
   import Nav from '../../components/nav/CbNav.vue';
   import BannerImg from '../../components/banner-img/BannerImg.vue';
   import Floor from '../../components/floor/Floor.vue';
@@ -60,6 +61,7 @@
   import SelectCity from './SelectCity.vue';
   import CbFooter from '../../components/footer/Footer.vue';
   import H5ToWx from '../../components/h5-to-wx/H5ToWx.vue';
+  import qs from 'qs'
 
   export default {
     components: ec([
@@ -73,14 +75,24 @@
       return {
         home: this.$store.state.homeData,
         isShowAppDownload: true,
-        isSelectCity: +this.$route.query.select_city === 1
+        isSelectCity: +this.$route.query.select_city === 1,
+        userInfo: {},
+        cartInfo: {}
       };
     },
     mounted() {
       getMemebr()
         .then(res => {
+          if(res.data.flag === 1){
+            this.userInfo = res.data.member_info;
+          }
+          return axiosAPI.post(`/Cart/GetAppCartNums`)
+        })
+        .then(res => {
           console.log(res.data)
-
+          if(res.data.flag === 1){
+            this.cartInfo = {...res.data};
+          }
         });
     },
     asyncData ({store}) {

@@ -1,6 +1,3 @@
-import {
-  getCookBook
-} from '../api'
 import createAPI from '../api'
 import axios from 'axios';
 
