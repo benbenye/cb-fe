@@ -61,6 +61,8 @@
   import SelectCity from './SelectCity.vue';
   import CbFooter from '../../components/footer/Footer.vue';
   import H5ToWx from '../../components/h5-to-wx/H5ToWx.vue';
+  import Toast from '../../components/toast/Toast.vue';
+  import ToastBus from '../../components/toast/toast-bus';
   import qs from 'qs'
 
   export default {
@@ -68,7 +70,7 @@
       Nav, BannerImg, Floor,
       Item, Scroll, ScrollCard,
       IndexTitle, AppDownload, SelectCity,
-      CbFooter, H5ToWx
+      CbFooter, H5ToWx, Toast
     ]),
     name: 'main',
     data() {
@@ -81,19 +83,27 @@
       };
     },
     mounted() {
+      this.onToast();
       getMemebr()
         .then(res => {
-          if(res.data.flag === 1){
+          if (res.data.flag === 1) {
             this.userInfo = res.data.member_info;
           }
           return axiosAPI.post(`/Cart/GetAppCartNums`)
         })
         .then(res => {
           console.log(res.data)
-          if(res.data.flag === 1){
+          if (res.data.flag === 1) {
             this.cartInfo = {...res.data};
           }
         });
+    },
+    methods: {
+      onToast: function () {
+        ToastBus.$on('show', function () {
+          console.log('s')
+        })
+      }
     },
     asyncData ({store}) {
       return store.dispatch('HOMEDATA_DATA')

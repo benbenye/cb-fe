@@ -41,7 +41,8 @@ module.exports = {
         }
       },
       '/api': {
-        target: 'http://api1.uat.chunbo.com',
+        target: 'http://api.chunbo.com',
+        // target: 'http://api1.uat.chunbo.com',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

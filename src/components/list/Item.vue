@@ -16,8 +16,8 @@
         </template>
       </p>
     </a>
-    <a cbclick="1-7" href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id"
-       @click="addCart(item_li.product_id, 1); clickMark({clickData:'1-7', pid:item_li.product_id})"></a>
+    <a href="javascript:void(0)" class="i-cart" :data-pid="item_li.product_id"
+       @click="test(); addCart(item_li.product_id, 1); clickMark({clickData:'1-7', pid:item_li.product_id})"></a>
     <div class="item-icon-box" v-if="item_li.promotion_price != 0.00">
       <i class="icon i-xsqg"></i>
     </div>
@@ -29,6 +29,7 @@
   import {clickMark, ec} from '../../util/index';
   import {axiosAPI} from '../../util/client-axios';
   import Toast from '../../components/toast/Toast.vue';
+  import ToastBus from '../toast/toast-bus';
   import qs from 'qs'
   export default {
     name: 'item',
@@ -51,6 +52,9 @@
     },
     methods: {
       clickMark: clickMark,
+      test: function () {
+        ToastBus.$emit('show')
+      },
       addCart: function (pid, num) {
         axiosAPI.post('/Cart/addToCart', qs.stringify({
             product_id: pid,
